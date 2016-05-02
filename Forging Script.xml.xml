@@ -88,7 +88,7 @@ forge = {
 		splintmail      = { {5, &quot;leather&quot;}, {18, &quot;steel&quot;} },
 		fieldplate      = { {8, &quot;cloth&quot;}, {34, &quot;steel&quot;} },
 		tank            = { {25, &quot;steel&quot;} },
-		fullplate       = { {10, &quot;leather&quot;}, {100, &quot;steel&quot;}, {10, &quot;goldbar&quot;}, {10, &quot;cloth&quot;} }
+		fullplate       = { {10, &quot;leather&quot;}, {100, &quot;steel&quot;}, {10, &quot;gold&quot;}, {10, &quot;cloth&quot;} }
 	},
 
 	descriptor = {
@@ -107,12 +107,12 @@ forge = {
 		big                 = { {1, &quot;steel&quot;} },
 		brawny              = { {1, &quot;steel&quot;} },
 		bulky               = { {3, &quot;iron&quot;} },
-		costly              = { {2, &quot;goldbar&quot;} },
+		costly              = { {2, &quot;gold&quot;} },
 		daunting            = { {1, &quot;steel&quot;} },
 		[&quot;double-edged&quot;]    = { {1, &quot;steel&quot;} },
 		[&quot;double-sided&quot;]    = { {1, &quot;steel&quot;} },
 		durable             = { {2, &quot;iron&quot;} },
-		gaudy               = { {1, &quot;goldbar&quot;} },
+		gaudy               = { {1, &quot;gold&quot;} },
 		grim                = { {2, &quot;iron&quot;} },
 		hardy               = { {2, &quot;iron&quot;} },
 		heavy               = { {1, &quot;steel&quot;} },
@@ -267,6 +267,29 @@ forge = {
 		vermillion          = { {4, &quot;lacquer&quot;}, {75, &quot;redink&quot;} }
 	},
 
+	comms = {
+		bone      = &quot;0&quot;,
+		coal      = &quot;0&quot;,
+		gold      = &quot;0&quot;,
+		lacquer   = &quot;0&quot;,
+		steel     = &quot;0&quot;,
+		leather   = &quot;0&quot;,
+		platinum  = &quot;0&quot;,
+		wood      = &quot;0&quot;,
+		cloth     = &quot;0&quot;,
+		gems      = &quot;0&quot;,
+		iron      = &quot;0&quot;,
+		obsidian  = &quot;0&quot;,
+		silver    = &quot;0&quot;,
+		redink    = &quot;0&quot;,
+		blueink   = &quot;0&quot;,
+		greenink  = &quot;0&quot;,
+		yellowink = &quot;0&quot;,
+		purpleink = &quot;0&quot;,
+		goldink   = &quot;0&quot;,
+		blackink  = &quot;0&quot;
+	},
+
 	help = {
 		&quot;The following aliases are used for this forging script.&quot;,
 		&quot; &quot;,
@@ -276,10 +299,10 @@ forge = {
 		&quot;The second variable will either be your first descriptor or the thing being forged with no descriptors.&quot;,
 		&quot;Third one will either be the second descriptor or the item being forged with one descriptor.&quot;,
 		&quot;Obviously the last variable will be the item being forged only.&quot;,
-		&quot;When this alias is used it will automatically count out the needed comms and outr them for you.&quot;,
 		&quot; &quot;,
 		&quot;To display your current forging order use:&quot;,
 		&quot;\-\- forging order \-\-&quot;,
+		&quot;This will also display the amount of comms needed for your current order.&quot;,
 		&quot; &quot;,
 		&quot;To clear your current forging order use:&quot;,
 		&quot;\-\- clear order \-\-&quot;,
@@ -307,18 +330,19 @@ forge = {
 		
 		local outr_cmd = {}
 		
-		-- outr base comms
+		-- adding base comms
 		for _, v in pairs(base_comms) do
-			outr_cmd[#outr_cmd+1] = &quot;outr &quot; ..v[1].. &quot; &quot; ..v[2]	
+			forge.comms[v[2]] = forge.comms[v[2]] + v[1]
 		end
 		
 		if descriptor1 ~= nil then
 			desc_comms = forge.descriptor[descriptor1] or {}
-			--outr desc multipliers
+
+			--add desc multiplier comms
 			for _, v in pairs(desc_comms) do
 				local amt = v[1]*size
 				
-				outr_cmd[#outr_cmd+1] = &quot;outr &quot; ..amt.. &quot; &quot; ..v[2]
+				forge.comms[v[2]] = forge.comms[v[2]] + amt
 			end
 		end
 		
@@ -328,11 +352,10 @@ forge = {
 			for _, v in pairs(desc_comms) do
 				local amt = v[1]*size
 			
-				outr_cmd[#outr_cmd+1] = &quot;outr &quot; ..amt.. &quot; &quot; ..v[2]
+				forge.comms[v[2]] = forge.comms[v[2]] + amt
 			end
 		end
 		
-		send(table.concat(outr_cmd, &quot;;&quot;))
 	end
 }</script>
                 <eventHandlerList/>
