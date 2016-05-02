@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MudletPackage>
+<MudletPackage version="1.0">
+    <ScriptPackage>
+        <ScriptGroup isActive="yes" isFolder="yes">
+            <name>Forging</name>
+            <packageName></packageName>
+            <script>--Version 16.5.2
+--Author Qwindor Rousseau
+--Thanks to Jhui for helping me with some of the harder scripting to make it get the right values for the descriptors
+--Also thank you Seragorn for helping me clean up the forging order display and adding of multiple items in one command</script>
+            <eventHandlerList/>
+            <Script isActive="yes" isFolder="no">
+                <name>Forging script</name>
+                <packageName></packageName>
+                <script>cecho(&quot;&lt;red&gt;\nForging script loaded. Use forgehelp to see the aliases used.\n&quot;)
+
+forge = {
+	next = {
+	},
+
+	size = {
+		dirk            = &quot;1&quot;,
+		spear           = &quot;3&quot;,
+		shortsword      = &quot;1&quot;,
+		axe             = &quot;3&quot;,
+		dagger          = &quot;1&quot;,
+		whip            = &quot;2&quot;,
+		lash            = &quot;1&quot;,
+		talons          = &quot;1&quot;,
+		morningstar     = &quot;6&quot;,
+		warhammer       = &quot;7&quot;,
+		rapier          = &quot;4&quot;,
+		javelin         = &quot;1&quot;,
+		flail           = &quot;6&quot;,
+		trident         = &quot;3&quot;,
+		battleaxe       = &quot;5&quot;,
+		bastard         = &quot;7&quot;,
+		lance           = &quot;8&quot;,
+		scimitar        = &quot;5&quot;,
+		broadsword      = &quot;6&quot;,
+		longsword       = &quot;6&quot;,
+		buckler         = &quot;1&quot;,
+		leatherarmour   = &quot;3&quot;,
+		cavalry         = &quot;1&quot;,
+		ringmail        = &quot;3&quot;,
+		banded          = &quot;1&quot;,
+		scalemail       = &quot;8&quot;,
+		kite            = &quot;1&quot;,
+		chainmail       = &quot;8&quot;,
+		tower           = &quot;1&quot;,
+		splintmail      = &quot;9&quot;,
+		fieldplate      = &quot;10&quot;,
+		fullplate       = &quot;11&quot;,
+		tank            = &quot;1&quot;
+	},
+
+	base = {
+		dirk            = { {1, &quot;iron&quot;}, {2, &quot;steel&quot;} },
+		spear           = { {4, &quot;wood&quot;}, {3, &quot;steel&quot;} },
+		shortsword      = { {1, &quot;leather&quot;}, {2, &quot;steel&quot;} },
+		axe             = { {3, &quot;iron&quot;}, {3, &quot;wood&quot;} },
+		dagger          = { {1, &quot;iron&quot;}, {1, &quot;steel&quot;}, {2, &quot;obsidian&quot;} },
+		whip            = { {1, &quot;iron&quot;}, {5, &quot;leather&quot;}, {2, &quot;wood&quot;} },
+		lash            = { {1, &quot;iron&quot;}, {5, &quot;leather&quot;}, {1, &quot;wood&quot;} },
+		talons          = { {2, &quot;leather&quot;}, {2, &quot;steel&quot;} },
+		morningstar     = { {3, &quot;iron&quot;}, {3, &quot;steel&quot;}, {1, &quot;wood&quot;} },
+		warhammer       = { {5, &quot;steel&quot;}, {3, &quot;wood&quot;} },
+		rapier          = { {5, &quot;steel&quot;} },
+		javelin         = { {1, &quot;obsidian&quot;}, {3, &quot;wood&quot;} },
+		flail           = { {3, &quot;iron&quot;}, {3, &quot;steel&quot;}, {1, &quot;wood&quot;} },
+		trident         = { {3, &quot;steel&quot;}, {4, &quot;wood&quot;} },
+		battleaxe       = { {7, &quot;steel&quot;}, {1, &quot;leather&quot;}, {1, &quot;wood&quot;} },
+		bastard         = { {2, &quot;leather&quot;}, {8, &quot;steel&quot;} },
+		lance           = { {2, &quot;steel&quot;}, {5, &quot;wood&quot;} },
+		scimitar        = { {1, &quot;leather&quot;}, {8, &quot;steel&quot;} },
+		broadsword      = { {1, &quot;leather&quot;}, {8, &quot;steel&quot;} },
+		longsword       = { {1, &quot;leather&quot;}, {8, &quot;steel&quot;} },
+		buckler         = { {1, &quot;leather&quot;}, {1, &quot;steel&quot;} },
+		leatherarmour   = { {10, &quot;leather&quot;} },
+		cavalry         = { {2, &quot;leather&quot;}, {1, &quot;steel&quot;} },
+		ringmail        = { {5, &quot;leather&quot;}, {3, &quot;steel&quot;} },
+		banded          = { {1, &quot;leather&quot;}, {2, &quot;steel&quot;} },
+		scalemail       = { {5, &quot;leather&quot;}, {6, &quot;steel&quot;} },
+		kite            = { {1, &quot;leather&quot;}, {3, &quot;steel&quot;} },
+		chainmail       = { {6, &quot;cloth&quot;}, {12, &quot;steel&quot;} },
+		tower           = { {1, &quot;leather&quot;}, {4, &quot;steel&quot;} },
+		splintmail      = { {5, &quot;leather&quot;}, {18, &quot;steel&quot;} },
+		fieldplate      = { {8, &quot;cloth&quot;}, {34, &quot;steel&quot;} },
+		tank            = { {25, &quot;steel&quot;} },
+		fullplate       = { {10, &quot;leather&quot;}, {100, &quot;steel&quot;}, {10, &quot;goldbar&quot;}, {10, &quot;cloth&quot;} }
+	},
+
+	descriptor = {
+		jagged              = { {2, &quot;iron&quot;} },
+		solid               = { {1, &quot;steel&quot;} },
+		[&quot;rune-etched&quot;]     = { {2, &quot;gems&quot;}, {4, &quot;steel&quot;} },
+		[&quot;soot-covered&quot;]    = { {1, &quot;coal&quot;} },
+		sooty               = { {1, &quot;coal&quot;} },
+		steel               = { {1, &quot;steel&quot;} },
+		sturdy              = { {1, &quot;steel&quot;} },
+		balanced            = { {2, &quot;iron&quot;} },
+		barbed              = { {2, &quot;iron&quot;} },
+		beefy               = { {1, &quot;steel&quot;} },
+		begrimed            = { {1, &quot;iron&quot;}, {3, &quot;coal&quot;} },
+		beveled             = { {1, &quot;steel&quot;} },
+		big                 = { {1, &quot;steel&quot;} },
+		brawny              = { {1, &quot;steel&quot;} },
+		bulky               = { {3, &quot;iron&quot;} },
+		costly              = { {2, &quot;goldbar&quot;} },
+		daunting            = { {1, &quot;steel&quot;} },
+		[&quot;double-edged&quot;]    = { {1, &quot;steel&quot;} },
+		[&quot;double-sided&quot;]    = { {1, &quot;steel&quot;} },
+		durable             = { {2, &quot;iron&quot;} },
+		gaudy               = { {1, &quot;goldbar&quot;} },
+		grim                = { {2, &quot;iron&quot;} },
+		hardy               = { {2, &quot;iron&quot;} },
+		heavy               = { {1, &quot;steel&quot;} },
+		hefty               = { {1, &quot;iron&quot;} },
+		honed               = { {1, &quot;steel&quot;} },
+		hooked              = { {2, &quot;iron&quot;} },
+		[&quot;iron-tipped&quot;]     = { {2, &quot;iron&quot;} },
+		keen                = { {2, &quot;iron&quot;} },
+		large               = { {1, &quot;steel&quot;} },
+		molted              = { {1, &quot;steel&quot;} },
+		polished            = { {1, &quot;steel&quot;} },
+		ponderous           = { {1, &quot;steel&quot;} },
+		resilient           = { {1, &quot;steel&quot;} },
+		rippled             = { {1, &quot;steel&quot;} },
+		poinded             = { {2, &quot;iron&quot;} },
+		rugged              = { {2, &quot;iron&quot;} },
+		[&quot;single-edged&quot;]    = { {1, &quot;steel&quot;} },
+		sinuous             = { {3, &quot;leather&quot;} },
+		sizable             = { {1, &quot;steel&quot;} },
+		sleek               = { {1, &quot;steel&quot;} },
+		slender             = { {1, &quot;steel&quot;} },
+		stout               = { {2, &quot;iron&quot;} },
+		supple              = { {3, &quot;leather&quot;} },
+		tempered            = { {1, &quot;steel&quot;} },
+		undulating          = { {3, &quot;leather&quot;} },
+		[&quot;well-made&quot;]       = { {1, &quot;steel&quot;} },
+		winding             = { {3, &quot;leather&quot;} },
+		ashtani             = { {1, &quot;steel&quot;}, {2, &quot;iron&quot;} },
+		hashani             = { {1, &quot;steel&quot;}, {2, &quot;iron&quot;} },
+		cyrenian            = { {4, &quot;iron&quot;} },
+		eleusian            = { {3, &quot;wood&quot;} },
+		mhaldorian          = { {3, &quot;obsidian&quot;}, {2, &quot;iron&quot;} },
+		baleful             = { {2, &quot;iron&quot;}, {2, &quot;steel&quot;} },
+		ceremonial          = { {2, &quot;silver&quot;} },
+		cruel               = { {3, &quot;iron&quot;}, {1, &quot;steel&quot;} },
+		delosian            = { {3, &quot;iron&quot;}, {1, &quot;steel&quot;} },
+		desert              = { {3, &quot;obsidian&quot;}, {1, &quot;steel&quot;}, {4, &quot;bone&quot;} },
+		eastern             = { {1, &quot;platinum&quot;} },
+		elegant             = { {1, &quot;silver&quot;}, {1, &quot;steel&quot;} },
+		etched              = { {2, &quot;steel&quot;} },
+		fancy               = { {1, &quot;gold&quot;} },
+		flashy              = { {1, &quot;gold&quot;} },
+		graceful            = { {1, &quot;steel&quot;}, {1, &quot;silver&quot;} },
+		grandiose           = { {2, &quot;gold&quot;} },
+		impressive          = { {2, &quot;steel&quot;} },
+		[&quot;knife-edged&quot;]     = { {2, &quot;steel&quot;} },
+		lovely              = { {2, &quot;silver&quot;} },
+		lustrous            = { {1, &quot;silver&quot;} },
+		menacing            = { {1, &quot;steel&quot;}, {2, &quot;iron&quot;} },
+		northern            = { {4, &quot;iron&quot;} },
+		[&quot;obsidian-tipped&quot;] = { {8, &quot;obsidian&quot;} },
+		ominous             = { {1, &quot;steel&quot;}, {2, &quot;iron&quot;}, {2, &quot;obsidian&quot;} },
+		ornamental          = { {1, &quot;gems&quot;} },
+		ostentatious        = { {1, &quot;gems&quot;}, {1, &quot;gold&quot;}, {1, &quot;platinum&quot;} },
+		peshwari            = { {1, &quot;silver&quot;}, {1, &quot;gold&quot;} },
+		puissant            = { {2, &quot;steel&quot;}, {1, &quot;iron&quot;} },
+		[&quot;razor-sharp&quot;]     = { {2, &quot;steel&quot;} },
+		savage              = { {1, &quot;steel&quot;}, {3, &quot;iron&quot;} },
+		[&quot;saw-edged&quot;]       = { {1, &quot;steel&quot;}, {2, &quot;iron&quot;} },
+		serrated            = { {1, &quot;steel&quot;}, {2, &quot;iron&quot;} },
+		shining             = { {1, &quot;steel&quot;}, {1, &quot;silver&quot;} },
+		siroccian           = { {6, &quot;obsidian&quot;}, {2, &quot;iron&quot;} },
+		snaky               = { {5, &quot;leather&quot;} },
+		southern            = { {2, &quot;steel&quot;} },
+		spiked              = { {3, &quot;iron&quot;} },
+		splendid            = { {1, &quot;steel&quot;}, {1, &quot;silver&quot;} },
+		[&quot;steel-tipped&quot;]    = { {2, &quot;steel&quot;} },
+		theran              = { {2, &quot;steel&quot;} },
+		twisted             = { {5, &quot;leather&quot;} },
+		unnerving           = { {1, &quot;obsidian&quot;}, {2, &quot;iron&quot;} },
+		vashnari            = { {6, &quot;iron&quot;} },
+		western             = { {1, &quot;steel&quot;}, {1, &quot;iron&quot;} },
+		barbaric            = { {18, &quot;iron&quot;} },
+		barbarous           = { {18, &quot;iron&quot;} },
+		beautiful           = { {4, &quot;silver&quot;}, {7, &quot;gold&quot;}, {3, &quot;platinum&quot;}, {7, &quot;steel&quot;} },
+		bejeweled           = { {1, &quot;steel&quot;}, {1, &quot;gems&quot;} },
+		bronzed             = { {4, &quot;steel&quot;}, {6, &quot;iron&quot;} },
+		charred             = { {12, &quot;coal&quot;}, {8, &quot;iron&quot;} },
+		delicate            = { {2, &quot;silver&quot;}, {2, &quot;platinum&quot;} },
+		fearsome            = { {6, &quot;steel&quot;}, {7, &quot;iron&quot;} },
+		formidable          = { {4, &quot;steel&quot;}, {4, &quot;iron&quot;} },
+		gleaming            = { {4, &quot;steel&quot;}, {4, &quot;silver&quot;} },
+		glorious            = { {3, &quot;steel&quot;} },
+		grand               = { {4, &quot;steel&quot;}, {2, &quot;gold&quot;}, {2, &quot;platinum&quot;} },
+		gruesome            = { {6, &quot;steel&quot;}, {8, &quot;iron&quot;} },
+		intimidating        = { {6, &quot;steel&quot;}, {6, &quot;iron&quot;} },
+		ornate              = { {2, &quot;platinum&quot;}, {2, &quot;gold&quot;} },
+		[&quot;rune-carved&quot;]     = { {4, &quot;steel&quot;}, {2, &quot;gems&quot;} },
+		scorched            = { {12, &quot;coal&quot;}, {8, &quot;iron&quot;} },
+		sinister            = { {4, &quot;steel&quot;}, {8, &quot;obsidian&quot;} },
+		stunning            = { {4, &quot;steel&quot;}, {2, &quot;gold&quot;} },
+		brutal              = { {18, &quot;iron&quot;} },
+		powerful            = { {7, &quot;steel&quot;}, {6, &quot;iron&quot;} },
+		shimmering          = { {1, &quot;silver&quot;}, {2, &quot;gold&quot;}, {2, &quot;platinum&quot;} },
+		vicious             = { {16, &quot;iron&quot;} },
+		wicked              = { {6, &quot;steel&quot;}, {8, &quot;iron&quot;} },
+		serpentine          = { {19, &quot;leather&quot;} },
+		blackened           = { {70, &quot;coal&quot;}, {30, &quot;iron&quot;} },
+		blue                = { {2, &quot;lacquer&quot;}, {30, &quot;blueink&quot;} },
+		brown               = { {2, &quot;lacquer&quot;}, {60, &quot;redink&quot;}, {8, &quot;yellowink&quot;} },
+		colossal            = { {15, &quot;steel&quot;}, {23, &quot;iron&quot;} },
+		dazzling            = { {4, &quot;silver&quot;}, {5, &quot;gems&quot;}, {6, &quot;steel&quot;} },
+		deadly              = { {15, &quot;steel&quot;}, {18, &quot;iron&quot;} },
+		devastating         = { {20, &quot;steel&quot;}, {20, &quot;iron&quot;} },
+		enormous            = { {17, &quot;steel&quot;}, {22, &quot;iron&quot;} },
+		exquisite           = { {10, &quot;steel&quot;}, {4, &quot;platinum&quot;}, {8, &quot;silver&quot;} },
+		extravagant         = { {11, &quot;gold&quot;}, {6, &quot;platinum&quot;} },
+		flawless            = { {30, &quot;steel&quot;} },
+		gigantic            = { {17, &quot;steel&quot;}, {22, &quot;iron&quot;} },
+		gilded              = { {21, &quot;gold&quot;} },
+		gorgeous            = { {7, &quot;steel&quot;}, {7, &quot;gold&quot;}, {7, &quot;platinum&quot;} },
+		green               = { {15, &quot;greenink&quot;}, {2, &quot;lacquer&quot;} },
+		grey                = { {2, &quot;lacquer&quot;} },
+		huge                = { {15, &quot;steel&quot;}, {19, &quot;iron&quot;} },
+		immense             = { {15, &quot;steel&quot;}, {23, &quot;iron&quot;} },
+		indomitable         = { {15, &quot;steel&quot;}, {22, &quot;iron&quot;} },
+		mammoth             = { {18, &quot;steel&quot;}, {21, &quot;iron&quot;} },
+		massive             = { {15, &quot;steel&quot;}, {20, &quot;iron&quot;} },
+		mighty              = { {19, &quot;steel&quot;}, {19, &quot;iron&quot;} },
+		monstrous           = { {21, &quot;steel&quot;}, {18, &quot;iron&quot;} },
+		orange              = { {10, &quot;yellowink&quot;}, {20, &quot;redink&quot;}, {2, &quot;lacquer&quot;} },
+		overpowering        = { {18, &quot;steel&quot;}, {20, &quot;iron&quot;} },
+		perfect             = { {30, &quot;steel&quot;} },
+		pink                = { {2, &quot;lacquer&quot;}, {80, &quot;redink&quot;} },
+		purple              = { {2, &quot;lacquer&quot;}, {7, &quot;purpleink&quot;} },
+		radiant             = { {8, &quot;platinum&quot;}, {9, &quot;gold&quot;} },
+		red                 = { {2, &quot;lacquer&quot;}, {80, &quot;redink&quot;} },
+		tan                 = { {15, &quot;redink&quot;}, {15, &quot;yellowink&quot;}, {2, &quot;lacquer&quot;} },
+		violet              = { {20, &quot;redink&quot;}, {5, &quot;purpleink&quot;}, {2, &quot;lacquer&quot;} },
+		white               = { {3, &quot;lacquer&quot;} },
+		yellow              = { {2, &quot;lacquer&quot;}, {20, &quot;yellowink&quot;} },
+		alabaster           = { {6, &quot;lacquer&quot;} },
+		amber               = { {4, &quot;lacquer&quot;}, {22, &quot;yellowink&quot;} },
+		azure               = { {4, &quot;lacquer&quot;}, {35, &quot;blueink&quot;} },
+		black               = { {4, &quot;lacquer&quot;}, {25, &quot;blackink&quot;} },
+		[&quot;bone-white&quot;]      = { {4, &quot;lacquer&quot;}, {70, &quot;bone&quot;} },
+		cerulean            = { {13, &quot;greenink&quot;}, {18, &quot;blueink&quot;}, {4, &quot;lacquer&quot;} },
+		crimson             = { {50, &quot;redink&quot;}, {4, &quot;lacquer&quot;} },
+		diabolical          = { {22, &quot;gems&quot;} },
+		[&quot;diamond-edged&quot;]   = { {40, &quot;blackink&quot;}, {5, &quot;lacquer&quot;} },
+		golden              = { {18, &quot;gold&quot;}, {5, &quot;lacquer&quot;} },
+		heavenly            = { {22, &quot;steel&quot;}, {15, &quot;gold&quot;}, {15, &quot;platinum&quot;} },
+		indigo              = { {9, &quot;purpleink&quot;}, {4, &quot;lacquer&quot;} },
+		ivory               = { {6, &quot;lacquer&quot;} },
+		[&quot;jet-black&quot;]       = { {40, &quot;blackink&quot;}, {5, &quot;lacquer&quot;} },
+		nightmarish         = { {25, &quot;steel&quot;}, {20, &quot;obsidian&quot;}, {50, &quot;iron&quot;} },
+		ochre               = { {12, &quot;yellowink&quot;}, {40, &quot;redink&quot;}, {4, &quot;lacquer&quot;} },
+		scarlet             = { {4, &quot;lacquer&quot;}, {75, &quot;redink&quot;} },
+		silver              = { {3, &quot;lacquer&quot;}, {20, &quot;silver&quot;} },
+		[&quot;skull-festooned&quot;] = { {220, &quot;bone&quot;} },
+		turquoise           = { {4, &quot;lacquer&quot;}, {15, &quot;greenink&quot;} },
+		vermillion          = { {4, &quot;lacquer&quot;}, {75, &quot;redink&quot;} }
+	},
+
+	help = {
+		&quot;The following aliases are used for this forging script.&quot;,
+		&quot; &quot;,
+		&quot;This alias will add the item to the order:&quot;,
+		&quot;\-\- forge &lt;number&gt; &lt;first desc/item&gt; &lt;second desc/item&gt; &lt;item&gt; \-\-&quot;,
+		&quot;The first variable will be how many you want to forge.&quot;,
+		&quot;The second variable will either be your first descriptor or the thing being forged with no descriptors.&quot;,
+		&quot;Third one will either be the second descriptor or the item being forged with one descriptor.&quot;,
+		&quot;Obviously the last variable will be the item being forged only.&quot;,
+		&quot;When this alias is used it will automatically count out the needed comms and outr them for you.&quot;,
+		&quot; &quot;,
+		&quot;To display your current forging order use:&quot;,
+		&quot;\-\- forging order \-\-&quot;,
+		&quot; &quot;,
+		&quot;To clear your current forging order use:&quot;,
+		&quot;\-\- clear order \-\-&quot;,
+		&quot; &quot;,
+		&quot;To stop the order while in the middle of it use:&quot;,
+		&quot;\-\- stop forging \-\-&quot;,
+		&quot;Warning if you stop mid order you will need to redo your order again as it will clear it&quot;,
+		&quot; &quot;,
+		&quot;Finally to start your order use:&quot;,
+		&quot;\-\- forge \-\-&quot;,
+		&quot;Make sure you drop selfishness so it will outr your coal and place it in the forge and fire it.&quot;,
+		&quot; &quot;,
+		&quot;Special thanks to Jhui and Seragorn for being patient with me and helping me get this working correctly.&quot;,
+		&quot; &quot;,
+		&quot;Version 16.5.2&quot;
+	},
+		
+	
+	-- use in alias with forge.outrComms(matches[2], matches[3], matches[4]) for 3 input alias
+	-- and forge.outrComms(matches[2], matches[3]) for 2 input alias
+	outrComms = function(item, descriptor1, descriptor2)
+		local size = tonumber(forge.size[item])
+		local base_comms = forge.base[item]
+		local desc_comms = nil
+		
+		local outr_cmd = {}
+		
+		-- outr base comms
+		for _, v in pairs(base_comms) do
+			outr_cmd[#outr_cmd+1] = &quot;outr &quot; ..v[1].. &quot; &quot; ..v[2]	
+		end
+		
+		if descriptor1 ~= nil then
+			desc_comms = forge.descriptor[descriptor1] or {}
+			--outr desc multipliers
+			for _, v in pairs(desc_comms) do
+				local amt = v[1]*size
+				
+				outr_cmd[#outr_cmd+1] = &quot;outr &quot; ..amt.. &quot; &quot; ..v[2]
+			end
+		end
+		
+		if descriptor2 ~= nil then
+			desc_comms = forge.descriptor[descriptor2] or {}
+			--outr desc2 multipliers
+			for _, v in pairs(desc_comms) do
+				local amt = v[1]*size
+			
+				outr_cmd[#outr_cmd+1] = &quot;outr &quot; ..amt.. &quot; &quot; ..v[2]
+			end
+		end
+		
+		send(table.concat(outr_cmd, &quot;;&quot;))
+	end
+}</script>
+                <eventHandlerList/>
+            </Script>
+        </ScriptGroup>
+    </ScriptPackage>
+</MudletPackage>

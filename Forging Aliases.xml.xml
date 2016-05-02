@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MudletPackage>
+<MudletPackage version="1.0">
+    <AliasPackage>
+        <AliasGroup isActive="yes" isFolder="yes">
+            <name>Forging</name>
+            <script></script>
+            <command></command>
+            <packageName></packageName>
+            <regex></regex>
+            <Alias isActive="yes" isFolder="no">
+                <name>Forging Add Double</name>
+                <script>cecho(&quot;&lt;red&gt;\n &quot;..matches[2]..&quot; &quot;..matches[3]..&quot; &quot;..matches[4]..&quot; &quot;..matches[5]..&quot;'s added to forging order.&quot;)
+local count = tonumber(matches[2])
+for i=1, count do
+	table.insert(forge.next, matches[3].. &quot; &quot; ..matches[4].. &quot; &quot;.. matches[5])
+	forge.outrComms(matches[5], matches[3], matches[4])
+end</script>
+                <command></command>
+                <packageName></packageName>
+                <regex>^forge (\d+) (\S+) (\S+) (\S+)$</regex>
+            </Alias>
+            <Alias isActive="yes" isFolder="no">
+                <name>Forging Stop</name>
+                <script>forge.next = {}
+cecho(&quot;&lt;red&gt;\nCleared forging order and will finish current item being forged.&quot;)</script>
+                <command></command>
+                <packageName></packageName>
+                <regex>^stop forging$</regex>
+            </Alias>
+            <Alias isActive="yes" isFolder="no">
+                <name>Start Forging</name>
+                <script>sendAll(&quot;outr coal&quot;, &quot;put coal in forge&quot;, &quot;fire forge&quot;, &quot;forge for &quot;..forge.next[1])</script>
+                <command></command>
+                <packageName></packageName>
+                <regex>^forge$</regex>
+            </Alias>
+            <Alias isActive="yes" isFolder="no">
+                <name>Forging Add Single</name>
+                <script>cecho(&quot;&lt;red&gt;\n &quot;..matches[2]..&quot; &quot;..matches[3]..&quot; &quot;..matches[4]..&quot;'s added to forging order.&quot;)
+local count = tonumber(matches[2])
+for i=1, count do
+	table.insert(forge.next, matches[3].. &quot; &quot; ..matches[4])
+	forge.outrComms(matches[4], matches[3])
+end</script>
+                <command></command>
+                <packageName></packageName>
+                <regex>^forge (\d+) (\S+) (\S+)$</regex>
+            </Alias>
+            <Alias isActive="yes" isFolder="no">
+                <name>Forging Add none</name>
+                <script>cecho(&quot;&lt;red&gt;\n &quot;..matches[2]..&quot; &quot;..matches[3]..&quot;'s added to forging order.&quot;)
+local count = tonumber(matches[2])
+for i=1, count do
+	table.insert(forge.next, matches[3])
+	forge.outrComms(matches[3])
+end</script>
+                <command></command>
+                <packageName></packageName>
+                <regex>^forge (\S+)$</regex>
+            </Alias>
+            <Alias isActive="yes" isFolder="no">
+                <name>Forging order</name>
+                <script>cecho(&quot;&lt;red&gt;\nForging Order:\n&quot;)
+local forgesum = {}
+for _,v in ipairs(forge.next) do
+	forgesum[v] = (forgesum[v] or 0)+1
+end
+--cecho(&quot;&lt;white&gt;\n&quot; ..table.concat(forge.next, &quot;\n&quot;))
+for i,v in pairs(forgesum) do
+	cecho(string.format(&quot;&lt;white&gt;%s: %s\n&quot;, i, v))
+end</script>
+                <command></command>
+                <packageName></packageName>
+                <regex>^forging order$</regex>
+            </Alias>
+            <Alias isActive="yes" isFolder="no">
+                <name>Display Help</name>
+                <script>cecho(&quot;&lt;red&gt;\nForging Script Help:&quot;)
+cecho(&quot;&lt;white&gt;\n&quot; ..table.concat(forge.help, &quot;\n&quot;))
+</script>
+                <command></command>
+                <packageName></packageName>
+                <regex>^forgehelp$</regex>
+            </Alias>
+            <Alias isActive="yes" isFolder="no">
+                <name>Clear order</name>
+                <script>forge.next = {}
+cecho(&quot;&lt;red&gt;\nCleared forging order.&quot;)</script>
+                <command></command>
+                <packageName></packageName>
+                <regex>^clear order$</regex>
+            </Alias>
+        </AliasGroup>
+    </AliasPackage>
+</MudletPackage>

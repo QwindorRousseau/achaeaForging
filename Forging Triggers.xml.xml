@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MudletPackage>
+<MudletPackage version="1.0">
+    <TriggerPackage>
+        <TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+            <name>Forging</name>
+            <script></script>
+            <triggerType>0</triggerType>
+            <conditonLineDelta>0</conditonLineDelta>
+            <mStayOpen>0</mStayOpen>
+            <mCommand></mCommand>
+            <packageName></packageName>
+            <mFgColor>#ff0000</mFgColor>
+            <mBgColor>#ffff00</mBgColor>
+            <mSoundFile></mSoundFile>
+            <colorTriggerFgColor>#000000</colorTriggerFgColor>
+            <colorTriggerBgColor>#000000</colorTriggerBgColor>
+            <regexCodeList/>
+            <regexCodePropertyList/>
+            <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                <name>Forging started</name>
+                <script>forging = true
+if #forge.next &gt; 0 then
+table.remove(forge.next, 1)
+end</script>
+                <triggerType>0</triggerType>
+                <conditonLineDelta>0</conditonLineDelta>
+                <mStayOpen>0</mStayOpen>
+                <mCommand></mCommand>
+                <packageName></packageName>
+                <mFgColor>#ff0000</mFgColor>
+                <mBgColor>#ffff00</mBgColor>
+                <mSoundFile></mSoundFile>
+                <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                <regexCodeList>
+                    <string>You place the required materials in the forge, beginning to heat them to the necessary temperature.</string>
+                </regexCodeList>
+                <regexCodePropertyList>
+                    <integer>3</integer>
+                </regexCodePropertyList>
+            </Trigger>
+            <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                <name>Forging finished</name>
+                <script>forging = false
+if matches[2] == &quot;full plate&quot; then
+	forgeItem = &quot;fullplate&quot;
+else
+	forgeItem = matches[2]
+end
+enableTrigger(&quot;Forging Balance&quot;)
+</script>
+                <triggerType>0</triggerType>
+                <conditonLineDelta>0</conditonLineDelta>
+                <mStayOpen>0</mStayOpen>
+                <mCommand></mCommand>
+                <packageName></packageName>
+                <mFgColor>#ff0000</mFgColor>
+                <mBgColor>#ffff00</mBgColor>
+                <mSoundFile></mSoundFile>
+                <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                <regexCodeList>
+                    <string>^With a final strike of the hammer, you finish forging the (.*)\.$</string>
+                </regexCodeList>
+                <regexCodePropertyList>
+                    <integer>1</integer>
+                </regexCodePropertyList>
+            </Trigger>
+            <Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                <name>Forging Balance</name>
+                <script>if #forge.next &gt; 0 then
+	sendAll(&quot;get &quot;..forgeItem..&quot; from forge&quot;, &quot;forge for &quot;..forge.next[1])
+	disableTrigger(&quot;Forging Balance&quot;)
+else
+	send(&quot;get &quot;..forgeItem..&quot; from forge&quot;)
+	disableTrigger(&quot;Forging Balance&quot;)
+end</script>
+                <triggerType>0</triggerType>
+                <conditonLineDelta>0</conditonLineDelta>
+                <mStayOpen>0</mStayOpen>
+                <mCommand></mCommand>
+                <packageName></packageName>
+                <mFgColor>#ff0000</mFgColor>
+                <mBgColor>#ffff00</mBgColor>
+                <mSoundFile></mSoundFile>
+                <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                <regexCodeList>
+                    <string>You have recovered balance on all limbs.</string>
+                </regexCodeList>
+                <regexCodePropertyList>
+                    <integer>3</integer>
+                </regexCodePropertyList>
+            </Trigger>
+            <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                <name>Forging interupted</name>
+                <script>enableTrigger(&quot;Forge Again&quot;)</script>
+                <triggerType>0</triggerType>
+                <conditonLineDelta>0</conditonLineDelta>
+                <mStayOpen>0</mStayOpen>
+                <mCommand></mCommand>
+                <packageName></packageName>
+                <mFgColor>#ff0000</mFgColor>
+                <mBgColor>#ffff00</mBgColor>
+                <mSoundFile></mSoundFile>
+                <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                <regexCodeList>
+                    <string>You lay down your hammer and cease working on your creation.</string>
+                </regexCodeList>
+                <regexCodePropertyList>
+                    <integer>3</integer>
+                </regexCodePropertyList>
+            </Trigger>
+            <Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                <name>Forge Again</name>
+                <script>send(&quot;forge&quot;)
+disableTrigger(&quot;Forge Again&quot;)</script>
+                <triggerType>0</triggerType>
+                <conditonLineDelta>0</conditonLineDelta>
+                <mStayOpen>0</mStayOpen>
+                <mCommand></mCommand>
+                <packageName></packageName>
+                <mFgColor>#ff0000</mFgColor>
+                <mBgColor>#ffff00</mBgColor>
+                <mSoundFile></mSoundFile>
+                <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                <regexCodeList>
+                    <string>You have recovered balance on all limbs.</string>
+                </regexCodeList>
+                <regexCodePropertyList>
+                    <integer>3</integer>
+                </regexCodePropertyList>
+            </Trigger>
+        </TriggerGroup>
+    </TriggerPackage>
+</MudletPackage>
