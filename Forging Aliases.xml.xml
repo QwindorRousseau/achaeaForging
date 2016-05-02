@@ -23,6 +23,11 @@ end</script>
             <Alias isActive="yes" isFolder="no">
                 <name>Forging Stop</name>
                 <script>forge.next = {}
+
+for _, v in pairs(forge.comms) do
+	forge.comms[_] = 0
+end
+
 cecho(&quot;&lt;red&gt;\nCleared forging order and will finish current item being forged.&quot;)</script>
                 <command></command>
                 <packageName></packageName>
@@ -30,7 +35,13 @@ cecho(&quot;&lt;red&gt;\nCleared forging order and will finish current item bein
             </Alias>
             <Alias isActive="yes" isFolder="no">
                 <name>Start Forging</name>
-                <script>sendAll(&quot;outr coal&quot;, &quot;put coal in forge&quot;, &quot;fire forge&quot;, &quot;forge for &quot;..forge.next[1])</script>
+                <script>for i,v in pairs(forge.comms) do
+	if tonumber(v) &gt; 0 then
+		send(string.format(&quot;outr %s %s&quot;, v, i))
+	end
+end
+
+sendAll(&quot;outr coal&quot;, &quot;put coal in forge&quot;, &quot;fire forge&quot;, &quot;forge for &quot;..forge.next[1])</script>
                 <command></command>
                 <packageName></packageName>
                 <regex>^forge$</regex>
@@ -61,7 +72,8 @@ end</script>
             </Alias>
             <Alias isActive="yes" isFolder="no">
                 <name>Forging order</name>
-                <script>cecho(&quot;&lt;red&gt;\nForging Order:\n&quot;)
+                <script>--Display the current order
+cecho(&quot;&lt;red&gt;\nForging Order:\n&quot;)
 local forgesum = {}
 for _,v in ipairs(forge.next) do
 	forgesum[v] = (forgesum[v] or 0)+1
@@ -69,7 +81,17 @@ end
 --cecho(&quot;&lt;white&gt;\n&quot; ..table.concat(forge.next, &quot;\n&quot;))
 for i,v in pairs(forgesum) do
 	cecho(string.format(&quot;&lt;white&gt;%s: %s\n&quot;, i, v))
-end</script>
+end
+
+--Display comms needed for order
+cecho(&quot;&lt;red&gt;\nTotal comms needed:&quot;)
+for i,v in pairs(forge.comms) do
+	if tonumber(v) &gt; 0 then
+		cecho(string.format(&quot;&lt;white&gt;\n%s: %s&quot;, i, v))
+	end
+end
+
+</script>
                 <command></command>
                 <packageName></packageName>
                 <regex>^forging order$</regex>
@@ -86,6 +108,11 @@ cecho(&quot;&lt;white&gt;\n&quot; ..table.concat(forge.help, &quot;\n&quot;))
             <Alias isActive="yes" isFolder="no">
                 <name>Clear order</name>
                 <script>forge.next = {}
+
+for _, v in pairs(forge.comms) do
+	forge.comms[_] = 0
+end
+
 cecho(&quot;&lt;red&gt;\nCleared forging order.&quot;)</script>
                 <command></command>
                 <packageName></packageName>
