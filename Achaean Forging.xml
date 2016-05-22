@@ -44,8 +44,8 @@ end</script>
                 <name>Forging finished</name>
                 <script>forging = false
 
-if matches[2] == &quot;full plate&quot; then
-	forgeItem = &quot;fullplate&quot;
+if matches[2] == &quot;full plate&quot; or matches[2] == &quot;leather armour&quot; then
+	forgeItem = &quot;armour&quot;
 else
 	forgeItem = matches[2]
 end
@@ -70,12 +70,12 @@ enableTrigger(&quot;Forging Balance&quot;)
             </Trigger>
             <Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
                 <name>Forging Balance</name>
-                <script>if forgePause ~= true then
-	if anvil == true and forgeWhat == &quot;anvil&quot; then
+                <script>if not forgePause then
+	if not anvil and forgeWhat == &quot;anvil&quot; then
 		if #forge.next &gt; 0 then
 			sendAll(&quot;place anvil&quot;, &quot;get &quot;..forgeItem..&quot; from &quot;..forgeWhat, &quot;forge for &quot;..forge.next[1])
 			disableTrigger(&quot;Forging Balance&quot;)
-		else
+		elseif #forge.next &lt; 1 then
 			sendAll(&quot;place anvil&quot;, &quot;get &quot;..forgeItem..&quot; from &quot;..forgeWhat)
 			disableTrigger(&quot;Forging Balance&quot;)
 			for _, v in pairs(forge.comms) do
@@ -84,11 +84,11 @@ enableTrigger(&quot;Forging Balance&quot;)
 		end
 	end
 
-	if anvil ~= true then
+	if anvil or forgeWhat == &quot;forge&quot; then
 		if #forge.next &gt; 0 then
 			sendAll(&quot;get &quot;..forgeItem..&quot; from &quot;..forgeWhat, &quot;forge for &quot;..forge.next[1])
 			disableTrigger(&quot;Forging Balance&quot;)
-		else
+		elseif #forge.next &lt; 1 then
 			send(&quot;get &quot;..forgeItem..&quot; from &quot;..forgeWhat)
 			disableTrigger(&quot;Forging Balance&quot;)
 			for _, v in pairs(forge.comms) do
@@ -96,7 +96,7 @@ enableTrigger(&quot;Forging Balance&quot;)
 			end
 		end
 	end
-elseif forgePause == true then
+elseif forgePause then
 	send(&quot;get &quot;..forgeItem..&quot; from &quot;..forgeWhat)
 end
 
@@ -168,7 +168,7 @@ disableTrigger(&quot;Forge Again&quot;)</script>
             </Trigger>
             <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
                 <name>Anvil Placed</name>
-                <script>anvil = false</script>
+                <script>anvil = true</script>
                 <triggerType>0</triggerType>
                 <conditonLineDelta>0</conditonLineDelta>
                 <mStayOpen>0</mStayOpen>
@@ -188,7 +188,7 @@ disableTrigger(&quot;Forge Again&quot;)</script>
             </Trigger>
             <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
                 <name>Anvil Returned</name>
-                <script>anvil = true</script>
+                <script>anvil = false</script>
                 <triggerType>0</triggerType>
                 <conditonLineDelta>0</conditonLineDelta>
                 <mStayOpen>0</mStayOpen>
@@ -201,83 +201,6 @@ disableTrigger(&quot;Forge Again&quot;)</script>
                 <colorTriggerBgColor>#000000</colorTriggerBgColor>
                 <regexCodeList>
                     <string>A portable anvil has returned to your inventory.</string>
-                </regexCodeList>
-                <regexCodePropertyList>
-                    <integer>3</integer>
-                </regexCodePropertyList>
-            </Trigger>
-            <Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-                <name>Forge Generosity</name>
-                <script>disableTrigger(&quot;Forge Generosity&quot;)
-enableTrigger(&quot;Forge EQ&quot;)
-forgeEQ = false</script>
-                <triggerType>0</triggerType>
-                <conditonLineDelta>0</conditonLineDelta>
-                <mStayOpen>0</mStayOpen>
-                <mCommand></mCommand>
-                <packageName></packageName>
-                <mFgColor>#ff0000</mFgColor>
-                <mBgColor>#ffff00</mBgColor>
-                <mSoundFile></mSoundFile>
-                <colorTriggerFgColor>#000000</colorTriggerFgColor>
-                <colorTriggerBgColor>#000000</colorTriggerBgColor>
-                <regexCodeList>
-                    <string>A feeling of generosity spreads throughout you.</string>
-                </regexCodeList>
-                <regexCodePropertyList>
-                    <integer>3</integer>
-                </regexCodePropertyList>
-            </Trigger>
-            <Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-                <name>Forge Selfishness</name>
-                <script>enableTrigger(&quot;Forge EQ&quot;)
-disableTrigger(&quot;Forge Selfishness&quot;)
-forgeEQ = true</script>
-                <triggerType>0</triggerType>
-                <conditonLineDelta>0</conditonLineDelta>
-                <mStayOpen>0</mStayOpen>
-                <mCommand></mCommand>
-                <packageName></packageName>
-                <mFgColor>#ff0000</mFgColor>
-                <mBgColor>#ffff00</mBgColor>
-                <mSoundFile></mSoundFile>
-                <colorTriggerFgColor>#000000</colorTriggerFgColor>
-                <colorTriggerBgColor>#000000</colorTriggerBgColor>
-                <regexCodeList>
-                    <string>You rub your hands together greedily.</string>
-                </regexCodeList>
-                <regexCodePropertyList>
-                    <integer>3</integer>
-                </regexCodePropertyList>
-            </Trigger>
-            <Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-                <name>Forge EQ</name>
-                <script>if forgeEQ == false then
-	if anvil ~= true and forgeWhat == &quot;anvil&quot; then
-		sendAll(&quot;place anvil&quot;, &quot;outr coal&quot;, &quot;put coal in &quot;..forgeWhat, &quot;fire forge&quot;)
-		svo.defs.keepup(&quot;selfishness&quot;, true)
-	else
-		sendAll(&quot;outr coal&quot;, &quot;put coal in &quot;..forgeWhat, &quot;fire forge&quot;)
-		svo.defs.keepup(&quot;selfishness&quot;, true)
-	end
-	enableTrigger(&quot;Forge Selfishness&quot;)
-elseif forgeEQ == true then
-	send(&quot;forge for &quot;..forge.next[1])
-	forgeEQ = false
-end		
-disableTrigger(&quot;Forge EQ&quot;)</script>
-                <triggerType>0</triggerType>
-                <conditonLineDelta>0</conditonLineDelta>
-                <mStayOpen>0</mStayOpen>
-                <mCommand></mCommand>
-                <packageName></packageName>
-                <mFgColor>#ff0000</mFgColor>
-                <mBgColor>#ffff00</mBgColor>
-                <mSoundFile></mSoundFile>
-                <colorTriggerFgColor>#000000</colorTriggerFgColor>
-                <colorTriggerBgColor>#000000</colorTriggerBgColor>
-                <regexCodeList>
-                    <string>You have recovered equilibrium.</string>
                 </regexCodeList>
                 <regexCodePropertyList>
                     <integer>3</integer>
@@ -329,20 +252,30 @@ cecho(&quot;\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]:&lt;red&gt; Cleare
 end
 
 if svo then 
-	if svo.defc.selfishness == true  then
+	if svo.defc.selfishness then
 		svo.defs.keepup(&quot;selfishness&quot;, false)
-		enableTrigger(&quot;Forge Selfishness&quot;)
-	elseif svo.defc.selfishness == false then
+		if forgeWhat == &quot;anvil&quot; then
+			tempTimer(1, [[sendAll(&quot;place anvil&quot;, &quot;outr coal&quot;, &quot;put coal in &quot;..forgeWhat, &quot;fire forge&quot;)]])
+			tempTimer(2, [[svo.defs.keepup(&quot;selfishness&quot;,true)]])
+			tempTimer(3, [[send(&quot;forge for &quot;..forge.next[1])]])
+		elseif forgeWhat == &quot;forge&quot; then
+			tempTimer(1, [[sendAll(&quot;outr coal&quot;, &quot;put coal in &quot;..forgeWhat, &quot;fire forge&quot;)]])
+			tempTimer(2, [[svo.defs.keepup(&quot;selfishness&quot;,true)]])
+			tempTimer(3, [[send(&quot;forge for &quot;..forge.next[1])]])
+		end
+	end
+	if not svo.defc.selfishness then
 		if forgeWhat == &quot;anvil&quot; then
 			sendAll(&quot;place anvil&quot;, &quot;outr coal&quot;, &quot;put coal in &quot;..forgeWhat, &quot;fire forge&quot;, &quot;forge for &quot;..forge.next[1])
-		else
+		elseif forgeWhat == &quot;forge&quot; then
 			sendAll(&quot;outr coal&quot;, &quot;put coal in &quot;..forgeWhat, &quot;fire forge&quot;, &quot;forge for &quot;..forge.next[1])
 		end
 	end
-elseif not svo then
+end
+if not svo then
 	if forgeWhat == &quot;anvil&quot; then
 		sendAll(&quot;place anvil&quot;, &quot;outr coal&quot;, &quot;put coal in &quot;..forgeWhat, &quot;fire forge&quot;, &quot;forge for &quot;..forge.next[1])
-	else
+	elseif forgeWhat == &quot;forge&quot; then
 		sendAll(&quot;outr coal&quot;, &quot;put coal in &quot;..forgeWhat, &quot;fire forge&quot;, &quot;forge for &quot;..forge.next[1])
 	end
 end
@@ -440,25 +373,37 @@ elseif forgePause == true then
 	forgePause = false
 	if #forge.next &gt; 0 then
 		if svo then 
-			if svo.defc.selfishness == true  then
+			if svo.defc.selfishness then
 				svo.defs.keepup(&quot;selfishness&quot;, false)
-				enableTrigger(&quot;Forge Selfishness&quot;)
-			elseif svo.defc.selfishness == false then
+				if forgeWhat == &quot;anvil&quot; then
+					tempTimer(1, [[sendAll(&quot;place anvil&quot;, &quot;outr coal&quot;, &quot;put coal in &quot;..forgeWhat, &quot;fire forge&quot;)]])
+					tempTimer(2, [[svo.defs.keepup(&quot;selfishness&quot;,true)]])
+					tempTimer(3, [[send(&quot;forge for &quot;..forge.next[1])]])
+				elseif forgeWhat == &quot;forge&quot; then
+					tempTimer(1, [[sendAll(&quot;outr coal&quot;, &quot;put coal in &quot;..forgeWhat, &quot;fire forge&quot;)]])
+					tempTimer(2, [[svo.defs.keepup(&quot;selfishness&quot;,true)]])
+					tempTimer(3, [[send(&quot;forge for &quot;..forge.next[1])]])
+				end
+			end
+			if not svo.defc.selfishness then
 				if forgeWhat == &quot;anvil&quot; then
 					sendAll(&quot;place anvil&quot;, &quot;outr coal&quot;, &quot;put coal in &quot;..forgeWhat, &quot;fire forge&quot;, &quot;forge for &quot;..forge.next[1])
-				else
+				elseif forgeWhat == &quot;forge&quot; then
 					sendAll(&quot;outr coal&quot;, &quot;put coal in &quot;..forgeWhat, &quot;fire forge&quot;, &quot;forge for &quot;..forge.next[1])
 				end
 			end
-		elseif not svo then
+		end
+		if not svo then
 			if forgeWhat == &quot;anvil&quot; then
 				sendAll(&quot;place anvil&quot;, &quot;outr coal&quot;, &quot;put coal in &quot;..forgeWhat, &quot;fire forge&quot;, &quot;forge for &quot;..forge.next[1])
-			else
+			elseif forgeWhat == &quot;forge&quot; then
 				sendAll(&quot;outr coal&quot;, &quot;put coal in &quot;..forgeWhat, &quot;fire forge&quot;, &quot;forge for &quot;..forge.next[1])
 			end
 		end
 	end
-end</script>
+end
+
+</script>
                 <command></command>
                 <packageName></packageName>
                 <regex>^fpause$</regex>
