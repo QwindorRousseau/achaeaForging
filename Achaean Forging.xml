@@ -417,7 +417,7 @@ end
         <ScriptGroup isActive="yes" isFolder="yes">
             <name>Forging</name>
             <packageName></packageName>
-            <script>--Version 16.5.22
+            <script>--Version 16.5.28
 --Author Qwindor Rousseau
 --Thanks to Jhui for helping me with some of the harder scripting to make it get the right values for the descriptors
 --Also thank you Seragorn for helping me clean up the forging order display and adding of multiple items in one command</script>
@@ -425,7 +425,7 @@ end
             <Script isActive="yes" isFolder="no">
                 <name>Forging script</name>
                 <packageName></packageName>
-                <script>cecho(&quot;\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]:&lt;red&gt; Script loaded. Use forginghelp to list the commands.&quot;)
+                <script>cecho(&quot;\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]:&lt;red&gt; Script loaded. Use forgehelp to list the commands.&quot;)
 
 local forgeSetting = {
 	choice = &quot;forge&quot;,
@@ -779,7 +779,7 @@ forge = {
 		&quot; &quot;,
 		&quot;Special thanks to Jhui and Seragorn for being patient with me and helping me get this working correctly.&quot;,
 		&quot; &quot;,
-		&quot;Version 16.5.22&quot;
+		&quot;Version 16.5.28&quot;
 	},
 		
 	
