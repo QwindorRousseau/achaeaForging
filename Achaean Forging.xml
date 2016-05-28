@@ -46,6 +46,8 @@ end</script>
 
 if matches[2] == &quot;full plate&quot; or matches[2] == &quot;leather armour&quot; then
 	forgeItem = &quot;armour&quot;
+elseif matches[2] == &quot;morning star&quot; then
+	forgeItem = &quot;morningstar&quot;
 else
 	forgeItem = matches[2]
 end
