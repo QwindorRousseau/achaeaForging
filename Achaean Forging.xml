@@ -506,7 +506,8 @@ forge = {
 		splintmail      = &quot;9&quot;,
 		fieldplate      = &quot;10&quot;,
 		fullplate       = &quot;11&quot;,
-		tank            = &quot;1&quot;
+		tank            = &quot;1&quot;,
+		cloth				 = &quot;2&quot;
 	},
 
 	base = {
@@ -542,7 +543,9 @@ forge = {
 		splintmail      = { {5, &quot;leather&quot;}, {18, &quot;steel&quot;} },
 		fieldplate      = { {8, &quot;cloth&quot;}, {34, &quot;steel&quot;} },
 		tank            = { {25, &quot;steel&quot;} },
-		fullplate       = { {10, &quot;leather&quot;}, {100, &quot;steel&quot;}, {10, &quot;gold&quot;}, {10, &quot;cloth&quot;} }
+		fullplate       = { {10, &quot;leather&quot;}, {100, &quot;steel&quot;}, {10, &quot;gold&quot;}, {10, &quot;cloth&quot;} },
+		cloth				 = { {12, &quot;cloth&quot;} },
+		pry					 = { {5, &quot;steel&quot;} }
 	},
 
 	descriptor = {
