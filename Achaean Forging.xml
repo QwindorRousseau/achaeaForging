@@ -1,461 +1,499 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MudletPackage>
-<MudletPackage version="1.0">
-    <TriggerPackage>
-        <TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-            <name>Forging</name>
-            <script></script>
-            <triggerType>0</triggerType>
-            <conditonLineDelta>0</conditonLineDelta>
-            <mStayOpen>0</mStayOpen>
-            <mCommand></mCommand>
-            <packageName></packageName>
-            <mFgColor>#ff0000</mFgColor>
-            <mBgColor>#ffff00</mBgColor>
-            <mSoundFile></mSoundFile>
-            <colorTriggerFgColor>#000000</colorTriggerFgColor>
-            <colorTriggerBgColor>#000000</colorTriggerBgColor>
-            <regexCodeList/>
-            <regexCodePropertyList/>
-            <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-                <name>Forging started</name>
-                <script>forging = true
+<MudletPackage version="1.001">
+	<TriggerPackage>
+		<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>Forging</name>
+			<script></script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList />
+			<regexCodePropertyList />
+			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>Forging started</name>
+				<script>forging = true
 if #forge.next &gt; 0 then
 table.remove(forge.next, 1)
-end</script>
-                <triggerType>0</triggerType>
-                <conditonLineDelta>0</conditonLineDelta>
-                <mStayOpen>0</mStayOpen>
-                <mCommand></mCommand>
-                <packageName></packageName>
-                <mFgColor>#ff0000</mFgColor>
-                <mBgColor>#ffff00</mBgColor>
-                <mSoundFile></mSoundFile>
-                <colorTriggerFgColor>#000000</colorTriggerFgColor>
-                <colorTriggerBgColor>#000000</colorTriggerBgColor>
-                <regexCodeList>
-                    <string>You place the required materials in the forge, beginning to heat them to the necessary temperature.</string>
-                </regexCodeList>
-                <regexCodePropertyList>
-                    <integer>3</integer>
-                </regexCodePropertyList>
-            </Trigger>
-            <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-                <name>Forging finished</name>
-                <script>forging = false
+end
+disableTimer("Forge Light")</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>You place the required materials in the forge, beginning to heat them to the necessary temperature.</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>3</integer>
+				</regexCodePropertyList>
+			</Trigger>
+			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>Forging finished</name>
+				<script>forging = false
 
-if matches[2] == &quot;full plate&quot; or matches[2] == &quot;leather armour&quot; then
-	forgeItem = &quot;armour&quot;
-elseif matches[2] == &quot;morning star&quot; then
-	forgeItem = &quot;morningstar&quot;
+if matches[2] == "full plate" or matches[2] == "leather armour" then
+	forgeItem = "armour"
+elseif matches[2] == "morning star" then
+	forgeItem = "morningstar"
 else
 	forgeItem = matches[2]
 end
-enableTrigger(&quot;Forging Balance&quot;)
-</script>
-                <triggerType>0</triggerType>
-                <conditonLineDelta>0</conditonLineDelta>
-                <mStayOpen>0</mStayOpen>
-                <mCommand></mCommand>
-                <packageName></packageName>
-                <mFgColor>#ff0000</mFgColor>
-                <mBgColor>#ffff00</mBgColor>
-                <mSoundFile></mSoundFile>
-                <colorTriggerFgColor>#000000</colorTriggerFgColor>
-                <colorTriggerBgColor>#000000</colorTriggerBgColor>
-                <regexCodeList>
-                    <string>^With a final strike of the hammer, you finish forging the (.*)\.$</string>
-                </regexCodeList>
-                <regexCodePropertyList>
-                    <integer>1</integer>
-                </regexCodePropertyList>
-            </Trigger>
-            <Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-                <name>Forging Balance</name>
-                <script>if not forgePause then
-	if not anvil and forgeWhat == &quot;anvil&quot; then
+enableTrigger("Forging Balance")
+enableTimer("Forge Light")</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>^With a final strike of the hammer, you finish forging the (.*)\.$</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>1</integer>
+				</regexCodePropertyList>
+			</Trigger>
+			<Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>Forging Balance</name>
+				<script>if not forgePause then
+	if not anvil and forgeWhat == "anvil" then
 		if #forge.next &gt; 0 then
-			sendAll(&quot;place anvil&quot;, &quot;get &quot;..forgeItem..&quot; from &quot;..forgeWhat, &quot;forge for &quot;..forge.next[1])
-			disableTrigger(&quot;Forging Balance&quot;)
+			sendAll("place anvil", "get "..forgeItem.." from "..forgeWhat, "forge for "..forge.next[1])
+			disableTrigger("Forging Balance")
 		elseif #forge.next &lt; 1 then
-			sendAll(&quot;place anvil&quot;, &quot;get &quot;..forgeItem..&quot; from &quot;..forgeWhat)
-			disableTrigger(&quot;Forging Balance&quot;)
+			sendAll("place anvil", "get "..forgeItem.." from "..forgeWhat)
+			disableTrigger("Forging Balance")
 			for _, v in pairs(forge.comms) do
 				forge.comms[_] = 0
 			end
 		end
 	end
 
-	if anvil or forgeWhat == &quot;forge&quot; then
+	if anvil or forgeWhat == "forge" then
 		if #forge.next &gt; 0 then
-			sendAll(&quot;get &quot;..forgeItem..&quot; from &quot;..forgeWhat, &quot;forge for &quot;..forge.next[1])
-			disableTrigger(&quot;Forging Balance&quot;)
+			sendAll("get "..forgeItem.." from "..forgeWhat, "forge for "..forge.next[1])
+			disableTrigger("Forging Balance")
 		elseif #forge.next &lt; 1 then
-			send(&quot;get &quot;..forgeItem..&quot; from &quot;..forgeWhat)
-			disableTrigger(&quot;Forging Balance&quot;)
+			send("get "..forgeItem.." from "..forgeWhat)
+			disableTrigger("Forging Balance")
 			for _, v in pairs(forge.comms) do
 				forge.comms[_] = 0
 			end
 		end
 	end
 elseif forgePause then
-	send(&quot;get &quot;..forgeItem..&quot; from &quot;..forgeWhat)
+	send("get "..forgeItem.." from "..forgeWhat)
 end
 
 
 
 
 </script>
-                <triggerType>0</triggerType>
-                <conditonLineDelta>0</conditonLineDelta>
-                <mStayOpen>0</mStayOpen>
-                <mCommand></mCommand>
-                <packageName></packageName>
-                <mFgColor>#ff0000</mFgColor>
-                <mBgColor>#ffff00</mBgColor>
-                <mSoundFile></mSoundFile>
-                <colorTriggerFgColor>#000000</colorTriggerFgColor>
-                <colorTriggerBgColor>#000000</colorTriggerBgColor>
-                <regexCodeList>
-                    <string>You have recovered balance on all limbs.</string>
-                </regexCodeList>
-                <regexCodePropertyList>
-                    <integer>3</integer>
-                </regexCodePropertyList>
-            </Trigger>
-            <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-                <name>Forging interupted</name>
-                <script>enableTrigger(&quot;Forge Again&quot;)</script>
-                <triggerType>0</triggerType>
-                <conditonLineDelta>0</conditonLineDelta>
-                <mStayOpen>0</mStayOpen>
-                <mCommand></mCommand>
-                <packageName></packageName>
-                <mFgColor>#ff0000</mFgColor>
-                <mBgColor>#ffff00</mBgColor>
-                <mSoundFile></mSoundFile>
-                <colorTriggerFgColor>#000000</colorTriggerFgColor>
-                <colorTriggerBgColor>#000000</colorTriggerBgColor>
-                <regexCodeList>
-                    <string>You lay down your hammer and cease working on your creation.</string>
-                </regexCodeList>
-                <regexCodePropertyList>
-                    <integer>3</integer>
-                </regexCodePropertyList>
-            </Trigger>
-            <Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-                <name>Forge Again</name>
-                <script>if anvil == true and forgeWhat == &quot;anvil&quot; then
-	sendAll(&quot;place anvil&quot;, &quot;forge&quot;)
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>You have recovered balance on all limbs.</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>3</integer>
+				</regexCodePropertyList>
+			</Trigger>
+			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>Forging interupted</name>
+				<script>enableTrigger("Forge Again")
+enableTimer("Forge Light")</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>You lay down your hammer and cease working on your creation.</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>3</integer>
+				</regexCodePropertyList>
+			</Trigger>
+			<Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>Forge Again</name>
+				<script>if anvil == true and forgeWhat == "anvil" then
+	sendAll("place anvil", "forge")
 else
-	send(&quot;forge&quot;)
+	send("forge")
 end
-disableTrigger(&quot;Forge Again&quot;)</script>
-                <triggerType>0</triggerType>
-                <conditonLineDelta>0</conditonLineDelta>
-                <mStayOpen>0</mStayOpen>
-                <mCommand></mCommand>
-                <packageName></packageName>
-                <mFgColor>#ff0000</mFgColor>
-                <mBgColor>#ffff00</mBgColor>
-                <mSoundFile></mSoundFile>
-                <colorTriggerFgColor>#000000</colorTriggerFgColor>
-                <colorTriggerBgColor>#000000</colorTriggerBgColor>
-                <regexCodeList>
-                    <string>You have recovered balance on all limbs.</string>
-                </regexCodeList>
-                <regexCodePropertyList>
-                    <integer>3</integer>
-                </regexCodePropertyList>
-            </Trigger>
-            <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-                <name>Anvil Placed</name>
-                <script>anvil = true</script>
-                <triggerType>0</triggerType>
-                <conditonLineDelta>0</conditonLineDelta>
-                <mStayOpen>0</mStayOpen>
-                <mCommand></mCommand>
-                <packageName></packageName>
-                <mFgColor>#ff0000</mFgColor>
-                <mBgColor>#ffff00</mBgColor>
-                <mSoundFile></mSoundFile>
-                <colorTriggerFgColor>#000000</colorTriggerFgColor>
-                <colorTriggerBgColor>#000000</colorTriggerBgColor>
-                <regexCodeList>
-                    <string>You set A portable anvil down.</string>
-                </regexCodeList>
-                <regexCodePropertyList>
-                    <integer>3</integer>
-                </regexCodePropertyList>
-            </Trigger>
-            <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-                <name>Anvil Returned</name>
-                <script>anvil = false</script>
-                <triggerType>0</triggerType>
-                <conditonLineDelta>0</conditonLineDelta>
-                <mStayOpen>0</mStayOpen>
-                <mCommand></mCommand>
-                <packageName></packageName>
-                <mFgColor>#ff0000</mFgColor>
-                <mBgColor>#ffff00</mBgColor>
-                <mSoundFile></mSoundFile>
-                <colorTriggerFgColor>#000000</colorTriggerFgColor>
-                <colorTriggerBgColor>#000000</colorTriggerBgColor>
-                <regexCodeList>
-                    <string>A portable anvil has returned to your inventory.</string>
-                </regexCodeList>
-                <regexCodePropertyList>
-                    <integer>3</integer>
-                </regexCodePropertyList>
-            </Trigger>
-        </TriggerGroup>
-    </TriggerPackage>
-    <TimerPackage/>
-    <AliasPackage>
-        <AliasGroup isActive="yes" isFolder="yes">
-            <name>Forging</name>
-            <script></script>
-            <command></command>
-            <packageName></packageName>
-            <regex></regex>
-            <Alias isActive="yes" isFolder="no">
-                <name>Forging Add Double</name>
-                <script>cecho(&quot;\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]:&lt;red&gt; &quot;..matches[2]..&quot; &quot;..matches[3]:lower()..&quot; &quot;..matches[4]:lower()..&quot; &quot;..matches[5]:lower()..&quot;'s added to forging order.&quot;)
+disableTrigger("Forge Again")</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>You have recovered balance on all limbs.</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>3</integer>
+				</regexCodePropertyList>
+			</Trigger>
+			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>Anvil Placed</name>
+				<script>anvil = true</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>You set A portable anvil down.</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>3</integer>
+				</regexCodePropertyList>
+			</Trigger>
+			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>Anvil Returned</name>
+				<script>anvil = false</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>A portable anvil has returned to your inventory.</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>3</integer>
+				</regexCodePropertyList>
+			</Trigger>
+			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>Forge lit</name>
+				<script>enableTimer("Forge Light")</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>You light the forge and work the bellows until it is burning hotly.</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>3</integer>
+				</regexCodePropertyList>
+			</Trigger>
+		</TriggerGroup>
+	</TriggerPackage>
+	<TimerPackage>
+		<TimerGroup isActive="yes" isFolder="yes" isTempTimer="no" isOffsetTimer="no">
+			<name>Forging</name>
+			<script></script>
+			<command></command>
+			<packageName></packageName>
+			<time>00:00:00.000</time>
+			<Timer isActive="no" isFolder="no" isTempTimer="no" isOffsetTimer="no">
+				<name>ForgeLit</name>
+				<script>disableTimer("ForgeLit")
+forgeLight = false</script>
+				<command></command>
+				<packageName></packageName>
+				<time>00:02:00.000</time>
+			</Timer>
+		</TimerGroup>
+	</TimerPackage>
+	<AliasPackage>
+		<AliasGroup isActive="yes" isFolder="yes">
+			<name>Forging</name>
+			<script></script>
+			<command></command>
+			<packageName></packageName>
+			<regex></regex>
+			<Alias isActive="yes" isFolder="no">
+				<name>Forging Add Double</name>
+				<script>cecho("\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]:&lt;red&gt; "..matches[2].." "..matches[3]:lower().." "..matches[4]:lower().." "..matches[5]:lower().."'s added to forging order.")
 local count = tonumber(matches[2])
 for i=1, count do
-	table.insert(forge.next, matches[3]:lower().. &quot; &quot; ..matches[4]:lower().. &quot; &quot;.. matches[5]:lower())
+	table.insert(forge.next, matches[3]:lower().. " " ..matches[4]:lower().. " ".. matches[5]:lower())
 	forge.outrComms(matches[5]:lower(), matches[3]:lower(), matches[4]:lower())
 end</script>
-                <command></command>
-                <packageName></packageName>
-                <regex>^forge (\d+) (\S+) (\S+) (\S+)$</regex>
-            </Alias>
-            <Alias isActive="yes" isFolder="no">
-                <name>Forging Stop</name>
-                <script>forge.next = {}
+				<command></command>
+				<packageName></packageName>
+				<regex>^forge (\d+) (\S+) (\S+) (\S+)$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>Forging Stop</name>
+				<script>forge.next = {}
 
 for _, v in pairs(forge.comms) do
 	forge.comms[_] = 0
 end
 
-cecho(&quot;\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]:&lt;red&gt; Cleared forging order and will finish current item being forged.&quot;)</script>
-                <command></command>
-                <packageName></packageName>
-                <regex>^stop forging$</regex>
-            </Alias>
-            <Alias isActive="yes" isFolder="no">
-                <name>Start Forging</name>
-                <script>for i,v in pairs(forge.comms) do
+cecho("\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]:&lt;red&gt; Cleared forging order and will finish current item being forged.")</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^stop forging$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>Start Forging</name>
+				<script>for i,v in pairs(forge.comms) do
 	if tonumber(v) &gt; 0 then
 		if outrComms == true then
-			send(string.format(&quot;outr %s %s&quot;, v, i))
+			send(string.format("outr %s %s", v, i))
 		end
 	end
 end
 
 if svo then 
 	if svo.defc.selfishness then
-		svo.defs.keepup(&quot;selfishness&quot;, false)
-		if forgeWhat == &quot;anvil&quot; then
-			tempTimer(1, [[sendAll(&quot;place anvil&quot;, &quot;outr coal&quot;, &quot;put coal in &quot;..forgeWhat, &quot;fire forge&quot;)]])
-			tempTimer(2, [[svo.defs.keepup(&quot;selfishness&quot;,true)]])
-			tempTimer(3, [[send(&quot;forge for &quot;..forge.next[1])]])
-		elseif forgeWhat == &quot;forge&quot; then
-			tempTimer(1, [[sendAll(&quot;outr coal&quot;, &quot;put coal in &quot;..forgeWhat, &quot;fire forge&quot;)]])
-			tempTimer(2, [[svo.defs.keepup(&quot;selfishness&quot;,true)]])
-			tempTimer(3, [[send(&quot;forge for &quot;..forge.next[1])]])
+		svo.defs.keepup("selfishness", false)
+		if forgeWhat == "anvil" then
+			tempTimer(1, [[sendAll("place anvil", "outr coal", "put coal in "..forgeWhat, "fire forge")]])
+			tempTimer(2, [[svo.defs.keepup("selfishness",true)]])
+			tempTimer(3, [[send("forge for "..forge.next[1])]])
+		elseif forgeWhat == "forge" then
+			tempTimer(1, [[sendAll("outr coal", "put coal in "..forgeWhat, "fire forge")]])
+			tempTimer(2, [[svo.defs.keepup("selfishness",true)]])
+			tempTimer(3, [[send("forge for "..forge.next[1])]])
 		end
 	end
 	if not svo.defc.selfishness then
-		if forgeWhat == &quot;anvil&quot; then
-			sendAll(&quot;place anvil&quot;, &quot;outr coal&quot;, &quot;put coal in &quot;..forgeWhat, &quot;fire forge&quot;, &quot;forge for &quot;..forge.next[1])
-		elseif forgeWhat == &quot;forge&quot; then
-			sendAll(&quot;outr coal&quot;, &quot;put coal in &quot;..forgeWhat, &quot;fire forge&quot;, &quot;forge for &quot;..forge.next[1])
+		if forgeWhat == "anvil" then
+			sendAll("place anvil", "outr coal", "put coal in "..forgeWhat, "fire forge", "forge for "..forge.next[1])
+		elseif forgeWhat == "forge" then
+			sendAll("outr coal", "put coal in "..forgeWhat, "fire forge", "forge for "..forge.next[1])
 		end
 	end
 end
 if not svo then
-	if forgeWhat == &quot;anvil&quot; then
-		sendAll(&quot;place anvil&quot;, &quot;outr coal&quot;, &quot;put coal in &quot;..forgeWhat, &quot;fire forge&quot;, &quot;forge for &quot;..forge.next[1])
-	elseif forgeWhat == &quot;forge&quot; then
-		sendAll(&quot;outr coal&quot;, &quot;put coal in &quot;..forgeWhat, &quot;fire forge&quot;, &quot;forge for &quot;..forge.next[1])
+	if forgeWhat == "anvil" then
+		sendAll("place anvil", "outr coal", "put coal in "..forgeWhat, "fire forge", "forge for "..forge.next[1])
+	elseif forgeWhat == "forge" then
+		sendAll("outr coal", "put coal in "..forgeWhat, "fire forge", "forge for "..forge.next[1])
 	end
 end
 </script>
-                <command></command>
-                <packageName></packageName>
-                <regex>^forge$</regex>
-            </Alias>
-            <Alias isActive="yes" isFolder="no">
-                <name>Forging Add Single</name>
-                <script>cecho(&quot;\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]:&lt;red&gt; &quot;..matches[2]..&quot; &quot;..matches[3]..&quot; &quot;..matches[4]..&quot;'s added to forging order.&quot;)
+				<command></command>
+				<packageName></packageName>
+				<regex>^forge$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>Forging Add Single</name>
+				<script>cecho("\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]:&lt;red&gt; "..matches[2].." "..matches[3].." "..matches[4].."'s added to forging order.")
 local count = tonumber(matches[2])
 for i=1, count do
-	table.insert(forge.next, matches[3]:lower().. &quot; &quot; ..matches[4]:lower())
+	table.insert(forge.next, matches[3]:lower().. " " ..matches[4]:lower())
 	forge.outrComms(matches[4]:lower(), matches[3]:lower())
 end</script>
-                <command></command>
-                <packageName></packageName>
-                <regex>^forge (\d+) (\S+) (\S+)$</regex>
-            </Alias>
-            <Alias isActive="yes" isFolder="no">
-                <name>Forging Add none</name>
-                <script>cecho(&quot;\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]:&lt;red&gt;  &quot;..matches[2]..&quot; &quot;..matches[3]..&quot;'s added to forging order.&quot;)
+				<command></command>
+				<packageName></packageName>
+				<regex>^forge (\d+) (\S+) (\S+)$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>Forging Add none</name>
+				<script>cecho("\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]:&lt;red&gt;  "..matches[2].." "..matches[3].."'s added to forging order.")
 local count = tonumber(matches[2])
 for i=1, count do
 	table.insert(forge.next, matches[3]:lower())
 	forge.outrComms(matches[3]:lower())
 end</script>
-                <command></command>
-                <packageName></packageName>
-                <regex>^forge (\d+) (\S+)$</regex>
-            </Alias>
-            <Alias isActive="yes" isFolder="no">
-                <name>Forging order</name>
-                <script>--Display the current order
-cecho(&quot;\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]:&lt;red&gt; Current Order:\n&quot;)
+				<command></command>
+				<packageName></packageName>
+				<regex>^forge (\d+) (\S+)$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>Forging order</name>
+				<script>--Display the current order
+cecho("\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]:&lt;red&gt; Current Order:\n")
 local forgesum = {}
 for _,v in ipairs(forge.next) do
 	forgesum[v] = (forgesum[v] or 0)+1
 end
---cecho(&quot;&lt;white&gt;\n&quot; ..table.concat(forge.next, &quot;\n&quot;))
+--cecho("&lt;white&gt;\n" ..table.concat(forge.next, "\n"))
 for i,v in pairs(forgesum) do
-	cecho(string.format(&quot;&lt;white&gt;%s: %s\n&quot;, i, v))
+	cecho(string.format("&lt;white&gt;%s: %s\n", i, v))
 end
 
 --Display comms needed for order
-cecho(&quot;\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]:&lt;red&gt; Total comms needed:&quot;)
+cecho("\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]:&lt;red&gt; Total comms needed:")
 for i,v in pairs(forge.comms) do
 	if tonumber(v) &gt; 0 then
-		cecho(string.format(&quot;&lt;white&gt;\n%s: %s&quot;, i, v))
+		cecho(string.format("&lt;white&gt;\n%s: %s", i, v))
 	end
 end
 
 </script>
-                <command></command>
-                <packageName></packageName>
-                <regex>^forging order$</regex>
-            </Alias>
-            <Alias isActive="yes" isFolder="no">
-                <name>Display Help</name>
-                <script>cecho(&quot;\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]:&lt;red&gt; Script Help:&quot;)
-cecho(&quot;&lt;white&gt;\n&quot; ..table.concat(forge.help, &quot;\n&quot;))
+				<command></command>
+				<packageName></packageName>
+				<regex>^forging order$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>Display Help</name>
+				<script>cecho("\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]:&lt;red&gt; Script Help:")
+cecho("&lt;white&gt;\n" ..table.concat(forge.help, "\n"))
 </script>
-                <command></command>
-                <packageName></packageName>
-                <regex>^forgehelp$</regex>
-            </Alias>
-            <Alias isActive="yes" isFolder="no">
-                <name>Clear order</name>
-                <script>forge.next = {}
+				<command></command>
+				<packageName></packageName>
+				<regex>^forgehelp$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>Clear order</name>
+				<script>forge.next = {}
 
 for _, v in pairs(forge.comms) do
 	forge.comms[_] = 0
 end
 
-cecho(&quot;\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]:&lt;red&gt; Cleared forging order.&quot;)</script>
-                <command></command>
-                <packageName></packageName>
-                <regex>^fclear$</regex>
-            </Alias>
-            <Alias isActive="yes" isFolder="no">
-                <name>Forge settings</name>
-                <script>forgeSettings()</script>
-                <command></command>
-                <packageName></packageName>
-                <regex>^fsettings</regex>
-            </Alias>
-            <Alias isActive="yes" isFolder="no">
-                <name>Forging pause</name>
-                <script>if forgePause == nil or forgePause == false then
-	cecho(&quot;\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]:&lt;red&gt; Order Paused.&quot;)
+cecho("\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]:&lt;red&gt; Cleared forging order.")</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^fclear$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>Forge settings</name>
+				<script>forgeSettings()</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^fsettings</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>Forging pause</name>
+				<script>if forgePause == nil or forgePause == false then
+	cecho("\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]:&lt;red&gt; Order Paused.")
 	forgePause = true
 elseif forgePause == true then
-	cecho(&quot;\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]:&lt;red&gt; Order Unpaused.&quot;)
+	cecho("\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]:&lt;red&gt; Order Unpaused.")
 	forgePause = false
 	if #forge.next &gt; 0 then
 		if svo then 
 			if svo.defc.selfishness then
-				svo.defs.keepup(&quot;selfishness&quot;, false)
-				if forgeWhat == &quot;anvil&quot; then
-					tempTimer(1, [[sendAll(&quot;place anvil&quot;, &quot;outr coal&quot;, &quot;put coal in &quot;..forgeWhat, &quot;fire forge&quot;)]])
-					tempTimer(2, [[svo.defs.keepup(&quot;selfishness&quot;,true)]])
-					tempTimer(3, [[send(&quot;forge for &quot;..forge.next[1])]])
-				elseif forgeWhat == &quot;forge&quot; then
-					tempTimer(1, [[sendAll(&quot;outr coal&quot;, &quot;put coal in &quot;..forgeWhat, &quot;fire forge&quot;)]])
-					tempTimer(2, [[svo.defs.keepup(&quot;selfishness&quot;,true)]])
-					tempTimer(3, [[send(&quot;forge for &quot;..forge.next[1])]])
+				svo.defs.keepup("selfishness", false)
+				if forgeWhat == "anvil" then
+					tempTimer(1, [[sendAll("place anvil", "outr coal", "put coal in "..forgeWhat, "fire forge")]])
+					tempTimer(2, [[svo.defs.keepup("selfishness",true)]])
+					tempTimer(3, [[send("forge for "..forge.next[1])]])
+				elseif forgeWhat == "forge" then
+					tempTimer(1, [[sendAll("outr coal", "put coal in "..forgeWhat, "fire forge")]])
+					tempTimer(2, [[svo.defs.keepup("selfishness",true)]])
+					tempTimer(3, [[send("forge for "..forge.next[1])]])
 				end
 			end
 			if not svo.defc.selfishness then
-				if forgeWhat == &quot;anvil&quot; then
-					sendAll(&quot;place anvil&quot;, &quot;outr coal&quot;, &quot;put coal in &quot;..forgeWhat, &quot;fire forge&quot;, &quot;forge for &quot;..forge.next[1])
-				elseif forgeWhat == &quot;forge&quot; then
-					sendAll(&quot;outr coal&quot;, &quot;put coal in &quot;..forgeWhat, &quot;fire forge&quot;, &quot;forge for &quot;..forge.next[1])
+				if forgeWhat == "anvil" then
+					sendAll("place anvil", "outr coal", "put coal in "..forgeWhat, "fire forge", "forge for "..forge.next[1])
+				elseif forgeWhat == "forge" then
+					sendAll("outr coal", "put coal in "..forgeWhat, "fire forge", "forge for "..forge.next[1])
 				end
 			end
 		end
 		if not svo then
-			if forgeWhat == &quot;anvil&quot; then
-				sendAll(&quot;place anvil&quot;, &quot;outr coal&quot;, &quot;put coal in &quot;..forgeWhat, &quot;fire forge&quot;, &quot;forge for &quot;..forge.next[1])
-			elseif forgeWhat == &quot;forge&quot; then
-				sendAll(&quot;outr coal&quot;, &quot;put coal in &quot;..forgeWhat, &quot;fire forge&quot;, &quot;forge for &quot;..forge.next[1])
+			if forgeWhat == "anvil" then
+				sendAll("place anvil", "outr coal", "put coal in "..forgeWhat, "fire forge", "forge for "..forge.next[1])
+			elseif forgeWhat == "forge" then
+				sendAll("outr coal", "put coal in "..forgeWhat, "fire forge", "forge for "..forge.next[1])
 			end
 		end
 	end
 end
 
 </script>
-                <command></command>
-                <packageName></packageName>
-                <regex>^fpause$</regex>
-            </Alias>
-        </AliasGroup>
-    </AliasPackage>
-    <ActionPackage/>
-    <ScriptPackage>
-        <ScriptGroup isActive="yes" isFolder="yes">
-            <name>Forging</name>
-            <packageName></packageName>
-            <script>--Version 16.5.28
+				<command></command>
+				<packageName></packageName>
+				<regex>^fpause$</regex>
+			</Alias>
+		</AliasGroup>
+	</AliasPackage>
+	<ActionPackage />
+	<ScriptPackage>
+		<ScriptGroup isActive="yes" isFolder="yes">
+			<name>Forging</name>
+			<packageName></packageName>
+			<script>--Version 19.7.8
 --Author Qwindor Rousseau
 --Thanks to Jhui for helping me with some of the harder scripting to make it get the right values for the descriptors
 --Also thank you Seragorn for helping me clean up the forging order display and adding of multiple items in one command</script>
-            <eventHandlerList/>
-            <Script isActive="yes" isFolder="no">
-                <name>Forging script</name>
-                <packageName></packageName>
-                <script>cecho(&quot;\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]:&lt;red&gt; Script loaded. Use forgehelp to list the commands.&quot;)
+			<eventHandlerList />
+			<Script isActive="yes" isFolder="no">
+				<name>Forging script</name>
+				<packageName></packageName>
+				<script>cecho("\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]:&lt;red&gt; Script loaded. Use forgehelp to list the commands.")
 
 local forgeSetting = {
-	choice = &quot;forge&quot;,
+	choice = "forge",
 	rift = false
 }
 
 function forgeSettings(setting,value)
 	if not setting and not value then
-		echo(&quot;\nYou may change the following:\n&quot;)
-		echo(string.rep(&quot;-&quot;,29)..&quot;\n  &quot;)
+		echo("\nYou may change the following:\n")
+		echo(string.rep("-",29).."\n  ")
 	
 		if forgeSetting.rift == false then 
-			cechoLink(&quot;&lt;firebrick&gt;Won't&quot;, [[forgeSettings(&quot;rift&quot;,true)]], &quot;Click if you want to outr&quot;, true)
+			cechoLink("&lt;firebrick&gt;Won't", [[forgeSettings("rift",true)]], "Click if you want to outr", true)
 		else 
-			cechoLink(&quot;&lt;lawn_green&gt;Will&quot;,[[forgeSettings(&quot;rift&quot;,false)]], &quot;Click here if you do not want to outr&quot;,true)
+			cechoLink("&lt;lawn_green&gt;Will",[[forgeSettings("rift",false)]], "Click here if you do not want to outr",true)
 		end
-		echo(&quot; outrift\n  &quot;)
+		echo(" outrift\n  ")
 
-		echo(&quot;Using &quot;)
-		if forgeSetting.choice == &quot;forge&quot; then 
-			cechoLink(&quot;&lt;green&gt;forge\n  &quot;,[[forgeSettings(&quot;choice&quot;,&quot;anvil&quot;)]], &quot;Click here if you would rather use anvil&quot;,true)
+		echo("Using ")
+		if forgeSetting.choice == "forge" then 
+			cechoLink("&lt;green&gt;forge\n  ",[[forgeSettings("choice","anvil")]], "Click here if you would rather use anvil",true)
 		else 
-			cechoLink(&quot;&lt;slate_grey&gt;anvil\n  &quot;,[[forgeSettings(&quot;choice&quot;,&quot;forge&quot;)]], &quot;Click here if you would rather use forge&quot;,true)
+			cechoLink("&lt;slate_grey&gt;anvil\n  ",[[forgeSettings("choice","forge")]], "Click here if you would rather use forge",true)
 		end
 
 		if svo then 
 			svo.showprompt()
 			forgeSave() 
 		else 
-			send(&quot;&quot;) 
+			send("") 
 			forgeSave()
 		end
 
@@ -474,315 +512,315 @@ forge = {
 	},
 
 	size = {
-		dirk            = &quot;1&quot;,
-		spear           = &quot;3&quot;,
-		shortsword      = &quot;1&quot;,
-		axe             = &quot;3&quot;,
-		dagger          = &quot;1&quot;,
-		whip            = &quot;2&quot;,
-		lash            = &quot;1&quot;,
-		talons          = &quot;1&quot;,
-		morningstar     = &quot;6&quot;,
-		warhammer       = &quot;7&quot;,
-		rapier          = &quot;4&quot;,
-		javelin         = &quot;1&quot;,
-		flail           = &quot;6&quot;,
-		trident         = &quot;3&quot;,
-		battleaxe       = &quot;5&quot;,
-		bastard         = &quot;7&quot;,
-		lance           = &quot;8&quot;,
-		scimitar        = &quot;5&quot;,
-		broadsword      = &quot;6&quot;,
-		longsword       = &quot;6&quot;,
-		buckler         = &quot;1&quot;,
-		leatherarmour   = &quot;3&quot;,
-		cavalry         = &quot;1&quot;,
-		ringmail        = &quot;3&quot;,
-		banded          = &quot;1&quot;,
-		scalemail       = &quot;8&quot;,
-		kite            = &quot;1&quot;,
-		chainmail       = &quot;8&quot;,
-		tower           = &quot;1&quot;,
-		splintmail      = &quot;9&quot;,
-		fieldplate      = &quot;10&quot;,
-		fullplate       = &quot;11&quot;,
-		tank            = &quot;1&quot;,
-		cloth				 = &quot;2&quot;
+		dirk            = "1",
+		spear           = "3",
+		shortsword      = "1",
+		axe             = "3",
+		dagger          = "1",
+		whip            = "2",
+		lash            = "1",
+		talons          = "1",
+		morningstar     = "6",
+		warhammer       = "7",
+		rapier          = "4",
+		javelin         = "1",
+		flail           = "6",
+		trident         = "3",
+		battleaxe       = "5",
+		bastard         = "7",
+		lance           = "8",
+		scimitar        = "5",
+		broadsword      = "6",
+		longsword       = "6",
+		buckler         = "1",
+		leatherarmour   = "3",
+		cavalry         = "1",
+		ringmail        = "3",
+		banded          = "1",
+		scalemail       = "8",
+		kite            = "1",
+		chainmail       = "8",
+		tower           = "1",
+		splintmail      = "9",
+		fieldplate      = "10",
+		fullplate       = "11",
+		tank            = "1",
+		cloth				 = "2"
 	},
 
 	base = {
-		dirk            = { {1, &quot;iron&quot;}, {2, &quot;steel&quot;} },
-		spear           = { {4, &quot;wood&quot;}, {3, &quot;steel&quot;} },
-		shortsword      = { {1, &quot;leather&quot;}, {2, &quot;steel&quot;} },
-		axe             = { {3, &quot;iron&quot;}, {3, &quot;wood&quot;} },
-		dagger          = { {1, &quot;iron&quot;}, {1, &quot;steel&quot;}, {2, &quot;obsidian&quot;} },
-		whip            = { {1, &quot;iron&quot;}, {5, &quot;leather&quot;}, {2, &quot;wood&quot;} },
-		lash            = { {1, &quot;iron&quot;}, {5, &quot;leather&quot;}, {1, &quot;wood&quot;} },
-		talons          = { {2, &quot;leather&quot;}, {2, &quot;steel&quot;} },
-		morningstar     = { {3, &quot;iron&quot;}, {3, &quot;steel&quot;}, {1, &quot;wood&quot;} },
-		warhammer       = { {5, &quot;steel&quot;}, {3, &quot;wood&quot;} },
-		rapier          = { {5, &quot;steel&quot;} },
-		javelin         = { {1, &quot;obsidian&quot;}, {3, &quot;wood&quot;} },
-		flail           = { {3, &quot;iron&quot;}, {3, &quot;steel&quot;}, {1, &quot;wood&quot;} },
-		trident         = { {3, &quot;steel&quot;}, {4, &quot;wood&quot;} },
-		battleaxe       = { {7, &quot;steel&quot;}, {1, &quot;leather&quot;}, {1, &quot;wood&quot;} },
-		bastard         = { {2, &quot;leather&quot;}, {8, &quot;steel&quot;} },
-		lance           = { {2, &quot;steel&quot;}, {5, &quot;wood&quot;} },
-		scimitar        = { {1, &quot;leather&quot;}, {8, &quot;steel&quot;} },
-		broadsword      = { {1, &quot;leather&quot;}, {8, &quot;steel&quot;} },
-		longsword       = { {1, &quot;leather&quot;}, {8, &quot;steel&quot;} },
-		buckler         = { {1, &quot;leather&quot;}, {1, &quot;steel&quot;} },
-		leatherarmour   = { {10, &quot;leather&quot;} },
-		cavalry         = { {2, &quot;leather&quot;}, {1, &quot;steel&quot;} },
-		ringmail        = { {5, &quot;leather&quot;}, {3, &quot;steel&quot;} },
-		banded          = { {1, &quot;leather&quot;}, {2, &quot;steel&quot;} },
-		scalemail       = { {5, &quot;leather&quot;}, {6, &quot;steel&quot;} },
-		kite            = { {1, &quot;leather&quot;}, {3, &quot;steel&quot;} },
-		chainmail       = { {6, &quot;cloth&quot;}, {12, &quot;steel&quot;} },
-		tower           = { {1, &quot;leather&quot;}, {4, &quot;steel&quot;} },
-		splintmail      = { {5, &quot;leather&quot;}, {18, &quot;steel&quot;} },
-		fieldplate      = { {8, &quot;cloth&quot;}, {34, &quot;steel&quot;} },
-		tank            = { {25, &quot;steel&quot;} },
-		fullplate       = { {10, &quot;leather&quot;}, {100, &quot;steel&quot;}, {10, &quot;gold&quot;}, {10, &quot;cloth&quot;} },
-		cloth				 = { {12, &quot;cloth&quot;} },
-		pry					 = { {5, &quot;steel&quot;} }
+		dirk            = { {1, "iron"}, {2, "steel"} },
+		spear           = { {4, "wood"}, {3, "steel"} },
+		shortsword      = { {1, "leather"}, {2, "steel"} },
+		axe             = { {3, "iron"}, {3, "wood"} },
+		dagger          = { {1, "iron"}, {1, "steel"}, {2, "obsidian"} },
+		whip            = { {1, "iron"}, {5, "leather"}, {2, "wood"} },
+		lash            = { {1, "iron"}, {5, "leather"}, {1, "wood"} },
+		talons          = { {2, "leather"}, {2, "steel"} },
+		morningstar     = { {3, "iron"}, {3, "steel"}, {1, "wood"} },
+		warhammer       = { {5, "steel"}, {3, "wood"} },
+		rapier          = { {5, "steel"} },
+		javelin         = { {1, "obsidian"}, {3, "wood"} },
+		flail           = { {3, "iron"}, {3, "steel"}, {1, "wood"} },
+		trident         = { {3, "steel"}, {4, "wood"} },
+		battleaxe       = { {7, "steel"}, {1, "leather"}, {1, "wood"} },
+		bastard         = { {2, "leather"}, {8, "steel"} },
+		lance           = { {2, "steel"}, {5, "wood"} },
+		scimitar        = { {1, "leather"}, {8, "steel"} },
+		broadsword      = { {1, "leather"}, {8, "steel"} },
+		longsword       = { {1, "leather"}, {8, "steel"} },
+		buckler         = { {1, "leather"}, {1, "steel"} },
+		leatherarmour   = { {10, "leather"} },
+		cavalry         = { {2, "leather"}, {1, "steel"} },
+		ringmail        = { {5, "leather"}, {3, "steel"} },
+		banded          = { {1, "leather"}, {2, "steel"} },
+		scalemail       = { {5, "leather"}, {6, "steel"} },
+		kite            = { {1, "leather"}, {3, "steel"} },
+		chainmail       = { {6, "cloth"}, {12, "steel"} },
+		tower           = { {1, "leather"}, {4, "steel"} },
+		splintmail      = { {5, "leather"}, {18, "steel"} },
+		fieldplate      = { {8, "cloth"}, {34, "steel"} },
+		tank            = { {25, "steel"} },
+		fullplate       = { {10, "leather"}, {100, "steel"}, {10, "gold"}, {10, "cloth"} },
+		cloth				 = { {12, "cloth"} },
+		pry					 = { {5, "steel"} }
 	},
 
 	descriptor = {
-		jagged              = { {2, &quot;iron&quot;} },
-		solid               = { {1, &quot;steel&quot;} },
-		[&quot;rune-etched&quot;]     = { {2, &quot;gems&quot;}, {4, &quot;steel&quot;} },
-		[&quot;soot-covered&quot;]    = { {1, &quot;coal&quot;} },
-		sooty               = { {1, &quot;coal&quot;} },
-		steel               = { {1, &quot;steel&quot;} },
-		sturdy              = { {1, &quot;steel&quot;} },
-		balanced            = { {2, &quot;iron&quot;} },
-		barbed              = { {2, &quot;iron&quot;} },
-		beefy               = { {1, &quot;steel&quot;} },
-		begrimed            = { {1, &quot;iron&quot;}, {3, &quot;coal&quot;} },
-		beveled             = { {1, &quot;steel&quot;} },
-		big                 = { {1, &quot;steel&quot;} },
-		brawny              = { {1, &quot;steel&quot;} },
-		bulky               = { {3, &quot;iron&quot;} },
-		costly              = { {2, &quot;gold&quot;} },
-		daunting            = { {1, &quot;steel&quot;} },
-		[&quot;double-edged&quot;]    = { {1, &quot;steel&quot;} },
-		[&quot;double-sided&quot;]    = { {1, &quot;steel&quot;} },
-		durable             = { {2, &quot;iron&quot;} },
-		gaudy               = { {1, &quot;gold&quot;} },
-		grim                = { {2, &quot;iron&quot;} },
-		hardy               = { {2, &quot;iron&quot;} },
-		heavy               = { {1, &quot;steel&quot;} },
-		hefty               = { {1, &quot;iron&quot;} },
-		honed               = { {1, &quot;steel&quot;} },
-		hooked              = { {2, &quot;iron&quot;} },
-		[&quot;iron-tipped&quot;]     = { {2, &quot;iron&quot;} },
-		keen                = { {2, &quot;iron&quot;} },
-		large               = { {1, &quot;steel&quot;} },
-		molted              = { {1, &quot;steel&quot;} },
-		polished            = { {1, &quot;steel&quot;} },
-		ponderous           = { {1, &quot;steel&quot;} },
-		resilient           = { {1, &quot;steel&quot;} },
-		rippled             = { {1, &quot;steel&quot;} },
-		poinded             = { {2, &quot;iron&quot;} },
-		rugged              = { {2, &quot;iron&quot;} },
-		[&quot;single-edged&quot;]    = { {1, &quot;steel&quot;} },
-		sinuous             = { {3, &quot;leather&quot;} },
-		sizable             = { {1, &quot;steel&quot;} },
-		sleek               = { {1, &quot;steel&quot;} },
-		slender             = { {1, &quot;steel&quot;} },
-		stout               = { {2, &quot;iron&quot;} },
-		supple              = { {3, &quot;leather&quot;} },
-		tempered            = { {1, &quot;steel&quot;} },
-		undulating          = { {3, &quot;leather&quot;} },
-		[&quot;well-made&quot;]       = { {1, &quot;steel&quot;} },
-		winding             = { {3, &quot;leather&quot;} },
-		ashtani             = { {1, &quot;steel&quot;}, {2, &quot;iron&quot;} },
-		hashani             = { {1, &quot;steel&quot;}, {2, &quot;iron&quot;} },
-		cyrenian            = { {4, &quot;iron&quot;} },
-		eleusian            = { {3, &quot;wood&quot;} },
-		mhaldorian          = { {3, &quot;obsidian&quot;}, {2, &quot;iron&quot;} },
-		baleful             = { {2, &quot;iron&quot;}, {2, &quot;steel&quot;} },
-		ceremonial          = { {2, &quot;silver&quot;} },
-		cruel               = { {3, &quot;iron&quot;}, {1, &quot;steel&quot;} },
-		delosian            = { {3, &quot;iron&quot;}, {1, &quot;steel&quot;} },
-		desert              = { {3, &quot;obsidian&quot;}, {1, &quot;steel&quot;}, {4, &quot;bone&quot;} },
-		eastern             = { {1, &quot;platinum&quot;} },
-		elegant             = { {1, &quot;silver&quot;}, {1, &quot;steel&quot;} },
-		etched              = { {2, &quot;steel&quot;} },
-		fancy               = { {1, &quot;gold&quot;} },
-		flashy              = { {1, &quot;gold&quot;} },
-		graceful            = { {1, &quot;steel&quot;}, {1, &quot;silver&quot;} },
-		grandiose           = { {2, &quot;gold&quot;} },
-		impressive          = { {2, &quot;steel&quot;} },
-		[&quot;knife-edged&quot;]     = { {2, &quot;steel&quot;} },
-		lovely              = { {2, &quot;silver&quot;} },
-		lustrous            = { {1, &quot;silver&quot;} },
-		menacing            = { {1, &quot;steel&quot;}, {2, &quot;iron&quot;} },
-		northern            = { {4, &quot;iron&quot;} },
-		[&quot;obsidian-tipped&quot;] = { {8, &quot;obsidian&quot;} },
-		ominous             = { {1, &quot;steel&quot;}, {2, &quot;iron&quot;}, {2, &quot;obsidian&quot;} },
-		ornamental          = { {1, &quot;gems&quot;} },
-		ostentatious        = { {1, &quot;gems&quot;}, {1, &quot;gold&quot;}, {1, &quot;platinum&quot;} },
-		peshwari            = { {1, &quot;silver&quot;}, {1, &quot;gold&quot;} },
-		puissant            = { {2, &quot;steel&quot;}, {1, &quot;iron&quot;} },
-		[&quot;razor-sharp&quot;]     = { {2, &quot;steel&quot;} },
-		savage              = { {1, &quot;steel&quot;}, {3, &quot;iron&quot;} },
-		[&quot;saw-edged&quot;]       = { {1, &quot;steel&quot;}, {2, &quot;iron&quot;} },
-		serrated            = { {1, &quot;steel&quot;}, {2, &quot;iron&quot;} },
-		shining             = { {1, &quot;steel&quot;}, {1, &quot;silver&quot;} },
-		siroccian           = { {6, &quot;obsidian&quot;}, {2, &quot;iron&quot;} },
-		snaky               = { {5, &quot;leather&quot;} },
-		southern            = { {2, &quot;steel&quot;} },
-		spiked              = { {3, &quot;iron&quot;} },
-		splendid            = { {1, &quot;steel&quot;}, {1, &quot;silver&quot;} },
-		[&quot;steel-tipped&quot;]    = { {2, &quot;steel&quot;} },
-		theran              = { {2, &quot;steel&quot;} },
-		twisted             = { {5, &quot;leather&quot;} },
-		unnerving           = { {1, &quot;obsidian&quot;}, {2, &quot;iron&quot;} },
-		vashnari            = { {6, &quot;iron&quot;} },
-		western             = { {1, &quot;steel&quot;}, {1, &quot;iron&quot;} },
-		barbaric            = { {18, &quot;iron&quot;} },
-		barbarous           = { {18, &quot;iron&quot;} },
-		beautiful           = { {4, &quot;silver&quot;}, {7, &quot;gold&quot;}, {3, &quot;platinum&quot;}, {7, &quot;steel&quot;} },
-		bejeweled           = { {1, &quot;steel&quot;}, {1, &quot;gems&quot;} },
-		bronzed             = { {4, &quot;steel&quot;}, {6, &quot;iron&quot;} },
-		charred             = { {12, &quot;coal&quot;}, {8, &quot;iron&quot;} },
-		delicate            = { {2, &quot;silver&quot;}, {2, &quot;platinum&quot;} },
-		fearsome            = { {6, &quot;steel&quot;}, {7, &quot;iron&quot;} },
-		formidable          = { {4, &quot;steel&quot;}, {4, &quot;iron&quot;} },
-		gleaming            = { {4, &quot;steel&quot;}, {4, &quot;silver&quot;} },
-		glorious            = { {3, &quot;steel&quot;} },
-		grand               = { {4, &quot;steel&quot;}, {2, &quot;gold&quot;}, {2, &quot;platinum&quot;} },
-		gruesome            = { {6, &quot;steel&quot;}, {8, &quot;iron&quot;} },
-		intimidating        = { {6, &quot;steel&quot;}, {6, &quot;iron&quot;} },
-		ornate              = { {2, &quot;platinum&quot;}, {2, &quot;gold&quot;} },
-		[&quot;rune-carved&quot;]     = { {4, &quot;steel&quot;}, {2, &quot;gems&quot;} },
-		scorched            = { {12, &quot;coal&quot;}, {8, &quot;iron&quot;} },
-		sinister            = { {4, &quot;steel&quot;}, {8, &quot;obsidian&quot;} },
-		stunning            = { {4, &quot;steel&quot;}, {2, &quot;gold&quot;} },
-		brutal              = { {18, &quot;iron&quot;} },
-		powerful            = { {7, &quot;steel&quot;}, {6, &quot;iron&quot;} },
-		shimmering          = { {1, &quot;silver&quot;}, {2, &quot;gold&quot;}, {2, &quot;platinum&quot;} },
-		vicious             = { {16, &quot;iron&quot;} },
-		wicked              = { {6, &quot;steel&quot;}, {8, &quot;iron&quot;} },
-		serpentine          = { {19, &quot;leather&quot;} },
-		blackened           = { {70, &quot;coal&quot;}, {30, &quot;iron&quot;} },
-		blue                = { {2, &quot;lacquer&quot;}, {30, &quot;blueink&quot;} },
-		brown               = { {2, &quot;lacquer&quot;}, {60, &quot;redink&quot;}, {8, &quot;yellowink&quot;} },
-		colossal            = { {15, &quot;steel&quot;}, {23, &quot;iron&quot;} },
-		dazzling            = { {4, &quot;silver&quot;}, {5, &quot;gems&quot;}, {6, &quot;steel&quot;} },
-		deadly              = { {15, &quot;steel&quot;}, {18, &quot;iron&quot;} },
-		devastating         = { {20, &quot;steel&quot;}, {20, &quot;iron&quot;} },
-		enormous            = { {17, &quot;steel&quot;}, {22, &quot;iron&quot;} },
-		exquisite           = { {10, &quot;steel&quot;}, {4, &quot;platinum&quot;}, {8, &quot;silver&quot;} },
-		extravagant         = { {11, &quot;gold&quot;}, {6, &quot;platinum&quot;} },
-		flawless            = { {30, &quot;steel&quot;} },
-		gigantic            = { {17, &quot;steel&quot;}, {22, &quot;iron&quot;} },
-		gilded              = { {21, &quot;gold&quot;} },
-		gorgeous            = { {7, &quot;steel&quot;}, {7, &quot;gold&quot;}, {7, &quot;platinum&quot;} },
-		green               = { {15, &quot;greenink&quot;}, {2, &quot;lacquer&quot;} },
-		grey                = { {2, &quot;lacquer&quot;} },
-		huge                = { {15, &quot;steel&quot;}, {19, &quot;iron&quot;} },
-		immense             = { {15, &quot;steel&quot;}, {23, &quot;iron&quot;} },
-		indomitable         = { {15, &quot;steel&quot;}, {22, &quot;iron&quot;} },
-		mammoth             = { {18, &quot;steel&quot;}, {21, &quot;iron&quot;} },
-		massive             = { {15, &quot;steel&quot;}, {20, &quot;iron&quot;} },
-		mighty              = { {19, &quot;steel&quot;}, {19, &quot;iron&quot;} },
-		monstrous           = { {21, &quot;steel&quot;}, {18, &quot;iron&quot;} },
-		orange              = { {10, &quot;yellowink&quot;}, {20, &quot;redink&quot;}, {2, &quot;lacquer&quot;} },
-		overpowering        = { {18, &quot;steel&quot;}, {20, &quot;iron&quot;} },
-		perfect             = { {30, &quot;steel&quot;} },
-		pink                = { {2, &quot;lacquer&quot;}, {80, &quot;redink&quot;} },
-		purple              = { {2, &quot;lacquer&quot;}, {7, &quot;purpleink&quot;} },
-		radiant             = { {8, &quot;platinum&quot;}, {9, &quot;gold&quot;} },
-		red                 = { {2, &quot;lacquer&quot;}, {80, &quot;redink&quot;} },
-		tan                 = { {15, &quot;redink&quot;}, {15, &quot;yellowink&quot;}, {2, &quot;lacquer&quot;} },
-		violet              = { {20, &quot;redink&quot;}, {5, &quot;purpleink&quot;}, {2, &quot;lacquer&quot;} },
-		white               = { {3, &quot;lacquer&quot;} },
-		yellow              = { {2, &quot;lacquer&quot;}, {20, &quot;yellowink&quot;} },
-		alabaster           = { {6, &quot;lacquer&quot;} },
-		amber               = { {4, &quot;lacquer&quot;}, {22, &quot;yellowink&quot;} },
-		azure               = { {4, &quot;lacquer&quot;}, {35, &quot;blueink&quot;} },
-		black               = { {4, &quot;lacquer&quot;}, {25, &quot;blackink&quot;} },
-		[&quot;bone-white&quot;]      = { {4, &quot;lacquer&quot;}, {70, &quot;bone&quot;} },
-		cerulean            = { {13, &quot;greenink&quot;}, {18, &quot;blueink&quot;}, {4, &quot;lacquer&quot;} },
-		crimson             = { {50, &quot;redink&quot;}, {4, &quot;lacquer&quot;} },
-		diabolical          = { {22, &quot;gems&quot;} },
-		[&quot;diamond-edged&quot;]   = { {40, &quot;blackink&quot;}, {5, &quot;lacquer&quot;} },
-		golden              = { {18, &quot;gold&quot;}, {5, &quot;lacquer&quot;} },
-		heavenly            = { {22, &quot;steel&quot;}, {15, &quot;gold&quot;}, {15, &quot;platinum&quot;} },
-		indigo              = { {9, &quot;purpleink&quot;}, {4, &quot;lacquer&quot;} },
-		ivory               = { {6, &quot;lacquer&quot;} },
-		[&quot;jet-black&quot;]       = { {40, &quot;blackink&quot;}, {5, &quot;lacquer&quot;} },
-		nightmarish         = { {25, &quot;steel&quot;}, {20, &quot;obsidian&quot;}, {50, &quot;iron&quot;} },
-		ochre               = { {12, &quot;yellowink&quot;}, {40, &quot;redink&quot;}, {4, &quot;lacquer&quot;} },
-		scarlet             = { {4, &quot;lacquer&quot;}, {75, &quot;redink&quot;} },
-		silver              = { {3, &quot;lacquer&quot;}, {20, &quot;silver&quot;} },
-		[&quot;skull-festooned&quot;] = { {220, &quot;bone&quot;} },
-		turquoise           = { {4, &quot;lacquer&quot;}, {15, &quot;greenink&quot;} },
-		vermillion          = { {4, &quot;lacquer&quot;}, {75, &quot;redink&quot;} },
-		targossian          = { {2, &quot;steel&quot;} }
+		jagged              = { {2, "iron"} },
+		solid               = { {1, "steel"} },
+		["rune-etched"]     = { {2, "gems"}, {4, "steel"} },
+		["soot-covered"]    = { {1, "coal"} },
+		sooty               = { {1, "coal"} },
+		steel               = { {1, "steel"} },
+		sturdy              = { {1, "steel"} },
+		balanced            = { {2, "iron"} },
+		barbed              = { {2, "iron"} },
+		beefy               = { {1, "steel"} },
+		begrimed            = { {1, "iron"}, {3, "coal"} },
+		beveled             = { {1, "steel"} },
+		big                 = { {1, "steel"} },
+		brawny              = { {1, "steel"} },
+		bulky               = { {3, "iron"} },
+		costly              = { {2, "gold"} },
+		daunting            = { {1, "steel"} },
+		["double-edged"]    = { {1, "steel"} },
+		["double-sided"]    = { {1, "steel"} },
+		durable             = { {2, "iron"} },
+		gaudy               = { {1, "gold"} },
+		grim                = { {2, "iron"} },
+		hardy               = { {2, "iron"} },
+		heavy               = { {1, "steel"} },
+		hefty               = { {1, "iron"} },
+		honed               = { {1, "steel"} },
+		hooked              = { {2, "iron"} },
+		["iron-tipped"]     = { {2, "iron"} },
+		keen                = { {2, "iron"} },
+		large               = { {1, "steel"} },
+		molted              = { {1, "steel"} },
+		polished            = { {1, "steel"} },
+		ponderous           = { {1, "steel"} },
+		resilient           = { {1, "steel"} },
+		rippled             = { {1, "steel"} },
+		poinded             = { {2, "iron"} },
+		rugged              = { {2, "iron"} },
+		["single-edged"]    = { {1, "steel"} },
+		sinuous             = { {3, "leather"} },
+		sizable             = { {1, "steel"} },
+		sleek               = { {1, "steel"} },
+		slender             = { {1, "steel"} },
+		stout               = { {2, "iron"} },
+		supple              = { {3, "leather"} },
+		tempered            = { {1, "steel"} },
+		undulating          = { {3, "leather"} },
+		["well-made"]       = { {1, "steel"} },
+		winding             = { {3, "leather"} },
+		ashtani             = { {1, "steel"}, {2, "iron"} },
+		hashani             = { {1, "steel"}, {2, "iron"} },
+		cyrenian            = { {4, "iron"} },
+		eleusian            = { {3, "wood"} },
+		mhaldorian          = { {3, "obsidian"}, {2, "iron"} },
+		baleful             = { {2, "iron"}, {2, "steel"} },
+		ceremonial          = { {2, "silver"} },
+		cruel               = { {3, "iron"}, {1, "steel"} },
+		delosian            = { {3, "iron"}, {1, "steel"} },
+		desert              = { {3, "obsidian"}, {1, "steel"}, {4, "bone"} },
+		eastern             = { {1, "platinum"} },
+		elegant             = { {1, "silver"}, {1, "steel"} },
+		etched              = { {2, "steel"} },
+		fancy               = { {1, "gold"} },
+		flashy              = { {1, "gold"} },
+		graceful            = { {1, "steel"}, {1, "silver"} },
+		grandiose           = { {2, "gold"} },
+		impressive          = { {2, "steel"} },
+		["knife-edged"]     = { {2, "steel"} },
+		lovely              = { {2, "silver"} },
+		lustrous            = { {1, "silver"} },
+		menacing            = { {1, "steel"}, {2, "iron"} },
+		northern            = { {4, "iron"} },
+		["obsidian-tipped"] = { {8, "obsidian"} },
+		ominous             = { {1, "steel"}, {2, "iron"}, {2, "obsidian"} },
+		ornamental          = { {1, "gems"} },
+		ostentatious        = { {1, "gems"}, {1, "gold"}, {1, "platinum"} },
+		peshwari            = { {1, "silver"}, {1, "gold"} },
+		puissant            = { {2, "steel"}, {1, "iron"} },
+		["razor-sharp"]     = { {2, "steel"} },
+		savage              = { {1, "steel"}, {3, "iron"} },
+		["saw-edged"]       = { {1, "steel"}, {2, "iron"} },
+		serrated            = { {1, "steel"}, {2, "iron"} },
+		shining             = { {1, "steel"}, {1, "silver"} },
+		siroccian           = { {6, "obsidian"}, {2, "iron"} },
+		snaky               = { {5, "leather"} },
+		southern            = { {2, "steel"} },
+		spiked              = { {3, "iron"} },
+		splendid            = { {1, "steel"}, {1, "silver"} },
+		["steel-tipped"]    = { {2, "steel"} },
+		theran              = { {2, "steel"} },
+		twisted             = { {5, "leather"} },
+		unnerving           = { {1, "obsidian"}, {2, "iron"} },
+		vashnari            = { {6, "iron"} },
+		western             = { {1, "steel"}, {1, "iron"} },
+		barbaric            = { {18, "iron"} },
+		barbarous           = { {18, "iron"} },
+		beautiful           = { {4, "silver"}, {7, "gold"}, {3, "platinum"}, {7, "steel"} },
+		bejeweled           = { {1, "steel"}, {1, "gems"} },
+		bronzed             = { {4, "steel"}, {6, "iron"} },
+		charred             = { {12, "coal"}, {8, "iron"} },
+		delicate            = { {2, "silver"}, {2, "platinum"} },
+		fearsome            = { {6, "steel"}, {7, "iron"} },
+		formidable          = { {4, "steel"}, {4, "iron"} },
+		gleaming            = { {4, "steel"}, {4, "silver"} },
+		glorious            = { {3, "steel"} },
+		grand               = { {4, "steel"}, {2, "gold"}, {2, "platinum"} },
+		gruesome            = { {6, "steel"}, {8, "iron"} },
+		intimidating        = { {6, "steel"}, {6, "iron"} },
+		ornate              = { {2, "platinum"}, {2, "gold"} },
+		["rune-carved"]     = { {4, "steel"}, {2, "gems"} },
+		scorched            = { {12, "coal"}, {8, "iron"} },
+		sinister            = { {4, "steel"}, {8, "obsidian"} },
+		stunning            = { {4, "steel"}, {2, "gold"} },
+		brutal              = { {18, "iron"} },
+		powerful            = { {7, "steel"}, {6, "iron"} },
+		shimmering          = { {1, "silver"}, {2, "gold"}, {2, "platinum"} },
+		vicious             = { {16, "iron"} },
+		wicked              = { {6, "steel"}, {8, "iron"} },
+		serpentine          = { {19, "leather"} },
+		blackened           = { {70, "coal"}, {30, "iron"} },
+		blue                = { {2, "lacquer"}, {30, "blueink"} },
+		brown               = { {2, "lacquer"}, {60, "redink"}, {8, "yellowink"} },
+		colossal            = { {15, "steel"}, {23, "iron"} },
+		dazzling            = { {4, "silver"}, {5, "gems"}, {6, "steel"} },
+		deadly              = { {15, "steel"}, {18, "iron"} },
+		devastating         = { {20, "steel"}, {20, "iron"} },
+		enormous            = { {17, "steel"}, {22, "iron"} },
+		exquisite           = { {10, "steel"}, {4, "platinum"}, {8, "silver"} },
+		extravagant         = { {11, "gold"}, {6, "platinum"} },
+		flawless            = { {30, "steel"} },
+		gigantic            = { {17, "steel"}, {22, "iron"} },
+		gilded              = { {21, "gold"} },
+		gorgeous            = { {7, "steel"}, {7, "gold"}, {7, "platinum"} },
+		green               = { {15, "greenink"}, {2, "lacquer"} },
+		grey                = { {2, "lacquer"} },
+		huge                = { {15, "steel"}, {19, "iron"} },
+		immense             = { {15, "steel"}, {23, "iron"} },
+		indomitable         = { {15, "steel"}, {22, "iron"} },
+		mammoth             = { {18, "steel"}, {21, "iron"} },
+		massive             = { {15, "steel"}, {20, "iron"} },
+		mighty              = { {19, "steel"}, {19, "iron"} },
+		monstrous           = { {21, "steel"}, {18, "iron"} },
+		orange              = { {10, "yellowink"}, {20, "redink"}, {2, "lacquer"} },
+		overpowering        = { {18, "steel"}, {20, "iron"} },
+		perfect             = { {30, "steel"} },
+		pink                = { {2, "lacquer"}, {80, "redink"} },
+		purple              = { {2, "lacquer"}, {7, "purpleink"} },
+		radiant             = { {8, "platinum"}, {9, "gold"} },
+		red                 = { {2, "lacquer"}, {80, "redink"} },
+		tan                 = { {15, "redink"}, {15, "yellowink"}, {2, "lacquer"} },
+		violet              = { {20, "redink"}, {5, "purpleink"}, {2, "lacquer"} },
+		white               = { {3, "lacquer"} },
+		yellow              = { {2, "lacquer"}, {20, "yellowink"} },
+		alabaster           = { {6, "lacquer"} },
+		amber               = { {4, "lacquer"}, {22, "yellowink"} },
+		azure               = { {4, "lacquer"}, {35, "blueink"} },
+		black               = { {4, "lacquer"}, {25, "blackink"} },
+		["bone-white"]      = { {4, "lacquer"}, {70, "bone"} },
+		cerulean            = { {13, "greenink"}, {18, "blueink"}, {4, "lacquer"} },
+		crimson             = { {50, "redink"}, {4, "lacquer"} },
+		diabolical          = { {22, "gems"} },
+		["diamond-edged"]   = { {40, "blackink"}, {5, "lacquer"} },
+		golden              = { {18, "gold"}, {5, "lacquer"} },
+		heavenly            = { {22, "steel"}, {15, "gold"}, {15, "platinum"} },
+		indigo              = { {9, "purpleink"}, {4, "lacquer"} },
+		ivory               = { {6, "lacquer"} },
+		["jet-black"]       = { {40, "blackink"}, {5, "lacquer"} },
+		nightmarish         = { {25, "steel"}, {20, "obsidian"}, {50, "iron"} },
+		ochre               = { {12, "yellowink"}, {40, "redink"}, {4, "lacquer"} },
+		scarlet             = { {4, "lacquer"}, {75, "redink"} },
+		silver              = { {3, "lacquer"}, {20, "silver"} },
+		["skull-festooned"] = { {220, "bone"} },
+		turquoise           = { {4, "lacquer"}, {15, "greenink"} },
+		vermillion          = { {4, "lacquer"}, {75, "redink"} },
+		targossian          = { {2, "steel"} }
 	},
 
 	comms = {
-		bone      = &quot;0&quot;,
-		coal      = &quot;0&quot;,
-		gold      = &quot;0&quot;,
-		lacquer   = &quot;0&quot;,
-		steel     = &quot;0&quot;,
-		leather   = &quot;0&quot;,
-		platinum  = &quot;0&quot;,
-		wood      = &quot;0&quot;,
-		cloth     = &quot;0&quot;,
-		gems      = &quot;0&quot;,
-		iron      = &quot;0&quot;,
-		obsidian  = &quot;0&quot;,
-		silver    = &quot;0&quot;,
-		redink    = &quot;0&quot;,
-		blueink   = &quot;0&quot;,
-		greenink  = &quot;0&quot;,
-		yellowink = &quot;0&quot;,
-		purpleink = &quot;0&quot;,
-		goldink   = &quot;0&quot;,
-		blackink  = &quot;0&quot;
+		bone      = "0",
+		coal      = "0",
+		gold      = "0",
+		lacquer   = "0",
+		steel     = "0",
+		leather   = "0",
+		platinum  = "0",
+		wood      = "0",
+		cloth     = "0",
+		gems      = "0",
+		iron      = "0",
+		obsidian  = "0",
+		silver    = "0",
+		redink    = "0",
+		blueink   = "0",
+		greenink  = "0",
+		yellowink = "0",
+		purpleink = "0",
+		goldink   = "0",
+		blackink  = "0"
 	},
 
 	help = {
-		&quot;The following aliases are used for this forging script.&quot;,
-		&quot; &quot;,
-		&quot;This alias will add the item to the order:&quot;,
-		&quot;\-\- forge &lt;number&gt; &lt;first desc/item&gt; &lt;second desc/item&gt; &lt;item&gt; \-\-&quot;,
-		&quot;The first variable will be how many you want to forge.&quot;,
-		&quot;The second variable will either be your first descriptor or the thing being forged with no descriptors.&quot;,
-		&quot;Third one will either be the second descriptor or the item being forged with one descriptor.&quot;,
-		&quot;Obviously the last variable will be the item being forged only.&quot;,
-		&quot; &quot;,
-		&quot;To display your current forging order use:&quot;,
-		&quot;\-\- forging order \-\-&quot;,
-		&quot;This will also display the amount of comms needed for your current order.&quot;,
-		&quot; &quot;,
-		&quot;To clear your current forging order use:&quot;,
-		&quot;\-\- fclear \-\-&quot;,
-		&quot; &quot;,
-		&quot;To stop the order while in the middle of it use:&quot;,
-		&quot;\-\- stop forging \-\-&quot;,
-		&quot;Warning if you stop mid order you will need to redo your order again as it will clear it&quot;,
-		&quot; &quot;,
-		&quot;Finally to start your order use:&quot;,
-		&quot;\-\- forge \-\-&quot;,
-		&quot;Make sure you drop selfishness if you dont have svof.&quot;,
-		&quot; &quot;,
-		&quot;To pause your order use:&quot;,
-		&quot;\-\- fpause \-\-&quot;,
-		&quot;This will pause the order after you finish forging the current item.&quot;,
-		&quot; &quot;,
-		&quot;To change if you want to outr your comms and to use an anvil or a forge use:&quot;,
-		&quot;\-\- fsettings \-\-&quot;,
-		&quot; &quot;,
-		&quot;Special thanks to Jhui and Seragorn for being patient with me and helping me get this working correctly.&quot;,
-		&quot; &quot;,
-		&quot;Version 16.5.28&quot;
+		"The following aliases are used for this forging script.",
+		" ",
+		"This alias will add the item to the order:",
+		"\-\- forge &lt;number&gt; &lt;first desc/item&gt; &lt;second desc/item&gt; &lt;item&gt; \-\-",
+		"The first variable will be how many you want to forge.",
+		"The second variable will either be your first descriptor or the thing being forged with no descriptors.",
+		"Third one will either be the second descriptor or the item being forged with one descriptor.",
+		"Obviously the last variable will be the item being forged only.",
+		" ",
+		"To display your current forging order use:",
+		"\-\- forging order \-\-",
+		"This will also display the amount of comms needed for your current order.",
+		" ",
+		"To clear your current forging order use:",
+		"\-\- fclear \-\-",
+		" ",
+		"To stop the order while in the middle of it use:",
+		"\-\- stop forging \-\-",
+		"Warning if you stop mid order you will need to redo your order again as it will clear it",
+		" ",
+		"Finally to start your order use:",
+		"\-\- forge \-\-",
+		"Make sure you drop selfishness if you dont have svof.",
+		" ",
+		"To pause your order use:",
+		"\-\- fpause \-\-",
+		"This will pause the order after you finish forging the current item.",
+		" ",
+		"To change if you want to outr your comms and to use an anvil or a forge use:",
+		"\-\- fsettings \-\-",
+		" ",
+		"Special thanks to Jhui and Seragorn for being patient with me and helping me get this working correctly.",
+		" ",
+		"Version 16.5.28"
 	},
 		
 	
@@ -827,19 +865,22 @@ forge = {
 
 
 function forgeSave()
-	table.save(getMudletHomeDir()..&quot;/forgesettings.lua&quot;, forgeSetting)
-	--cecho(&quot;\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]: settings saved.&quot;)
+	table.save(getMudletHomeDir().."/forgesettings.lua", forgeSetting)
+	--cecho("\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]: settings saved.")
 end
 
 function forgeLoad()
-	table.load(getMudletHomeDir()..&quot;/forgesettings.lua&quot;, forgeSetting)
-	--cecho(&quot;\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]: settings loaded.&quot;)
+	table.load(getMudletHomeDir().."/forgesettings.lua", forgeSetting)
+	--cecho("\n&lt;grey&gt;[&lt;orange&gt;Forging&lt;grey&gt;]: settings loaded.")
 end
 
 --forgeLoad()</script>
-                <eventHandlerList/>
-            </Script>
-        </ScriptGroup>
-    </ScriptPackage>
-    <KeyPackage/>
+				<eventHandlerList />
+			</Script>
+		</ScriptGroup>
+	</ScriptPackage>
+	<KeyPackage />
+	<HelpPackage>
+		<helpURL></helpURL>
+	</HelpPackage>
 </MudletPackage>
